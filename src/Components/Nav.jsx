@@ -26,7 +26,6 @@ function Nav() {
         <button className="">
           <FiMoon className=" text-2xl" />
         </button>
-        {<Switch />}
         <Button />
       </div>
     </div>
