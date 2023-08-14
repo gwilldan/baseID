@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {AiOutlinePlusCircle, AiOutlineMinusCircle} from "react-icons/ai"
 import {motion} from "framer-motion"
 
@@ -8,6 +8,26 @@ function DisplayCard({toggle, setToggle, searchedName}) {
   const cardStyle = "border-b border-[#17338F] py-4 md:border-none"
   const dataStyle = "text-lg font-bold" 
   
+  const [year, setYear] = useState(1)
+  const [eth, setEth] = useState(0.002)
+
+  const add = () => {
+    const newYear = year + 1
+    setYear(newYear)
+    const newEth = (0.002 * newYear).toFixed(3)
+    setEth(newEth)
+  }
+  const subtract = () =>  {
+    if(year === 1) {
+      setYear(year)
+      setEth(eth)
+    } else {
+      setYear(year - 1)
+      const newEth = (eth - 0.002).toFixed(3)
+      setEth(newEth)
+    }
+  }
+
   const animVariant = {
     start: {
       opacity: 0,
@@ -38,15 +58,16 @@ function DisplayCard({toggle, setToggle, searchedName}) {
 
         <div className={cardStyle}>
           <div className=" flex items-center gap-2">
-            <button className=' text-priBlue text-xl'><AiOutlineMinusCircle /></button>
-            <p className={dataStyle}>{1} Year</p>
-            <button><AiOutlinePlusCircle className=' text-priBlue text-xl' /></button>
+            
+            <button onClick={subtract} className=' text-priBlue text-xl'><AiOutlineMinusCircle /></button>
+            <p className={dataStyle}>{year} Year</p>
+            <button onClick={add}><AiOutlinePlusCircle className=' text-priBlue text-xl' /></button>
           </div>
           <p>Registration Period</p>
         </div>
 
         <div className={`${cardStyle}  border-none`}>
-          <p className={dataStyle}>0.02eth</p>
+          <p className={dataStyle}>{eth} eth</p>
           <p>Registration Price</p>
         </div>
 
