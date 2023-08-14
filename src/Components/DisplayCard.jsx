@@ -48,6 +48,8 @@ function DisplayCard({ toggle, setToggle, searchedName }) {
     },
   };
 
+  console.log("name is available", isNameAvail);
+
   const { data: tld } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi: abi,
