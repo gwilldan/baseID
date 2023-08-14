@@ -16,6 +16,7 @@ export default {
       colors: {
         "priBlue": "#2151F5",
         "secBlue": "#DBE6FE",
+        "lightBlue": "#e3e9f9",
         "priBlack": "#0C0C0C",
         "secBlack": "#1E1E1E"
       },

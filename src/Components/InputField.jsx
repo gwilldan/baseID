@@ -6,7 +6,6 @@ import {FiSearch} from "react-icons/fi"
 function InputField() {
 
     const [Name, setName] = useState("")
-    console.log(Name)
 
   return (
     <div className=' h-14 md:h-16 justify-between bg-white 

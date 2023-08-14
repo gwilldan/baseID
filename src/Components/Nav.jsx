@@ -6,7 +6,7 @@ import {FiMoon} from "react-icons/fi"
 function Nav() {
   return (
     <div 
-    className=' h-[100px] border-b border-priBlue flex justify-between pt-[40px] px-small md:px-Large
+    className=' h-[100px] border-b border-priBlue flex justify-between pt-[40px] px-small md:px-[40px] lg:px-Large
         pb-small 
     '
     >

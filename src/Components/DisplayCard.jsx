@@ -2,7 +2,9 @@ import React from 'react'
 
 function DisplayCard() {
   return (
-    <div>DisplayCard</div>
+    <div>
+      
+    </div>
   )
 }
 
