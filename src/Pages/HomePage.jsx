@@ -1,49 +1,70 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Background } from '../Assets'
-import { InputField } from '../Components'
+import { InputField, DisplayCard } from '../Components'
+import { motion } from "framer-motion"
 
 function HomePage() {
 
+  const [toggle, setToggle] = useState(false)
+  const [searchedName, setSearchedName] = useState("")
 
-  //GROUP STYLING FOR DISPLAY CARD
-  const cardStyle = "border-b border-[#17338F] py-4 md:border-none"
-  const dataStyle = "text-lg font-bold" 
+  // animation controls
+  const animVariant = {
+    begin: {
+      opacity: 0,
+      y: -20
+    },
+
+    end: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+        when: "beforeChildren"
+      }
+    },
+
+  }
+
+  const childVariant = {
+
+    begin: {
+      opacity: 0,
+      y: -20
+    },
+
+    end: {
+      opacity: 1,
+      y: 0,
+    },
+
+  }
 
   return (
-    <div className=' mt-[90px] md:mt-[130px] px-small md:px-[40px] lg:px-Large rounded-sm'>
+    <motion.div
+      variants={animVariant}
+      initial = "begin"
+      animate = "end"
+      transition = "transit"
+
+    className=' mt-[90px] md:mt-[130px] px-small md:px-[40px] lg:px-Large rounded-sm'>
       <div className=' max-w-[700px] '>
-        <p className=' text font-extrabold text-3xl md:text-7xl mb-2'>Your Base identity <br /> Starts Here</p>
-        <p className=' font-normal md:text-lg '>Secure your base domain as you navigate through the Base ecosystem</p>
+        <motion.p className=' text font-extrabold text-3xl md:text-7xl mb-2'>Your Base identity <br /> Starts Here</motion.p>
+        <motion.p variants={childVariant} className=' font-normal md:text-lg '>Secure your base domain as you navigate through the Base ecosystem</motion.p>
       </div>
       
-      <InputField />
+      <motion.div variants={childVariant}>
+        <InputField toggle={toggle} setToggle={setToggle} setSearchedName={setSearchedName}/>
+      </motion.div>
 
-      <div className = {`md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 bg-lightBlue flex flex-col md:flex-row md:justify-between md:items-center`}>
-        
-        <div className={cardStyle}>
-          <p className={dataStyle}>Billy.base</p>
-          <p className=' text-green-600'>Available</p>
-        </div>
+      {
+        toggle && <DisplayCard toggle={toggle} setToggle={setToggle} searchedName = {searchedName} />
+      }
+      
+      
 
-        <div className={cardStyle}>
-          <div className=" flex items-center">
-            <button>-</button>
-            <p className={dataStyle}>1 year</p>
-            <button>+</button>
-          </div>
-          <p>Registration Period</p>
-        </div>
-
-        <div className={`${cardStyle}  border-none`}>
-          <p className={dataStyle}>0.02eth</p>
-          <p>Registration Price</p>
-        </div>
-
-        <button className=' md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white'>
-          Register
-        </button>
-      </div>
-    </div>
+    </motion.div>
   )
 }
 
