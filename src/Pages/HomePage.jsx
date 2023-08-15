@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 import { InputField, DisplayCard } from "../Components";
 
@@ -42,6 +42,7 @@ function HomePage() {
   const search = () => {
     if (searchedName.length < 3) {
       toast.error("Name cannot be less than 3 characters");
+      console.log("omo");
       return;
     }
     setToggle(!toggle);
@@ -61,7 +62,10 @@ function HomePage() {
         <motion.p className=" dark:text-white text font-extrabold text-3xl md:text-7xl mb-2">
           Your Base identity <br /> Starts Here
         </motion.p>
-        <motion.p variants={childVariant} className="  dark:text-white font-normal md:text-lg ">
+        <motion.p
+          variants={childVariant}
+          className="  dark:text-white font-normal md:text-lg "
+        >
           Secure your base domain as you navigate through the Base ecosystem
         </motion.p>
       </div>
