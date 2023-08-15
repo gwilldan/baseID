@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import ReadPrice from "./Functional/ReadPrice";
 import ReadName from "./Functional/ReadName";
 import { abi } from "../contract-artifacts/abi";
-import { useContractRead } from "wagmi";
+import {
+  useContractRead,
+  useContractWrite,
+  usePrepareContractWrite,
+  useWaitForTransaction,
+} from "wagmi";
+import { parseErrorDetails } from "../utils/helper";
+import { ethers } from "ethers";
 
-function DisplayCard({ toggle, setToggle, searchedName }) {
+function DisplayCard({ searchedName }) {
   //GROUP STYLING FOR DISPLAY CARD
   const cardStyle = "border-b border-[#17338F] py-4 md:border-none";
   const dataStyle = "text-lg font-bold";
@@ -14,6 +23,7 @@ function DisplayCard({ toggle, setToggle, searchedName }) {
   const [year, setYear] = useState(1);
   const [eth, setEth] = useState(0.002);
   const [isNameAvail, setIsNameAvail] = useState(false);
+  const [price, setPrice] = useState("");
 
   const add = () => {
     const newYear = year + 1;
@@ -48,13 +58,40 @@ function DisplayCard({ toggle, setToggle, searchedName }) {
     },
   };
 
-  console.log("name is available", isNameAvail);
-
   const { data: tld } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi: abi,
     functionName: "tld",
   });
+
+  const { config } = usePrepareContractWrite({
+    address: import.meta.env.VITE_CA,
+    abi,
+    functionName: "registerDomain",
+    args: [searchedName],
+    value: ethers.parseEther(price ? price : "0"),
+  });
+
+  const { data: txHash, write } = useContractWrite(config, {
+    onError(error) {
+      const parseError = parseErrorDetails(error.message);
+      console.log(parseError.error.includes("insufficient funds"));
+      if (parseError.error?.includes("insufficient funds")) {
+        toast.error(
+          `insufficient funds, user have ${
+            parseError.haveGas
+          } Gas, function wants ${ethers.formatEther(parseError.wantGas)} Gas`
+        );
+      }
+    },
+  });
+
+  const { data, isError, isLoading, isSuccess, isFetching, isFetched } =
+    useWaitForTransaction({
+      hash: txHash,
+    });
+
+  console.log(data);
 
   return (
     <motion.div
@@ -75,17 +112,24 @@ function DisplayCard({ toggle, setToggle, searchedName }) {
             <AiOutlinePlusCircle className=" text-priBlue text-xl" />
           </button>
         </div>
-        <p className=" dark:font-semibold dark:text-white">Registration Period</p>
+        <p className=" dark:font-semibold dark:text-white">
+          Registration Period
+        </p>
       </div>
-      <ReadPrice args={searchedName} />
+      <ReadPrice args={searchedName} setPrice={setPrice} />
       <button
-        disabled={isNameAvail}
+        disabled={isNameAvail || !write}
         className=" md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50"
+        onClick={() => write?.()}
       >
         Register
       </button>
     </motion.div>
   );
 }
+
+DisplayCard.propTypes = {
+  searchedName: PropTypes.string,
+};
 
 export default DisplayCard;

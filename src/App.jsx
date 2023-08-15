@@ -1,40 +1,41 @@
-import react, { useState, useEffect } from "react";
-import HomePage from "./Pages/HomePage";
+import { useState, useEffect } from "react";
 
 // WEB3 IMPORTS
-import {
-  WagmiConfig,
-  createConfig,
-  configureChains,
-  mainnet,
-  sepolia,
-} from "wagmi";
+import { WagmiConfig, createConfig, configureChains } from "wagmi";
+import { mainnet, sepolia, base } from "@wagmi/core/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { alchemyProvider } from "@wagmi/core/providers/alchemy";
+import { InjectedConnector } from "wagmi/connectors/injected";
+
+import { Toaster } from "react-hot-toast";
 
 //FILE IMPORTS
+import HomePage from "./Pages/HomePage";
 import { Nav, Footer } from "./Components";
 
-const { publicClient, webSocketPublicClient } = configureChains(
-  [sepolia],
-  [publicProvider()]
+const { chains, publicClient } = configureChains(
+  [sepolia, mainnet, base],
+  [
+    alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_KEY }),
+    publicProvider(),
+  ]
 );
 
 const config = createConfig({
   autoConnect: true,
+  connectors: [new InjectedConnector({ chains })],
   publicClient,
-  webSocketPublicClient,
 });
 
 function App() {
-
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("light");
   useEffect(() => {
-    if(theme === "dark"){
-      document.documentElement.classList.add('dark')
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove("dark");
     }
-  }, [theme])
+  }, [theme]);
 
   return (
     <>
@@ -46,6 +47,22 @@ function App() {
             <Footer />
           </div>
         </div>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          gutter={8}
+          containerClassName=""
+          containerStyle={{}}
+          toastOptions={{
+            // Define default options
+            className: "",
+            duration: 5000,
+            style: {
+              background: "#17338F",
+              color: "#fff",
+            },
+          }}
+        />
       </WagmiConfig>
     </>
   );
