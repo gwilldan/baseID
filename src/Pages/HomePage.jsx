@@ -92,6 +92,7 @@ function HomePage() {
           toggle={toggle}
           setToggle={setToggle}
           searchedName={searchedName}
+          setSearchedName={setSearchedName}
         />
       )}
     </motion.div>
