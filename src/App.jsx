@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <WagmiConfig config={config}>
-        <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG h-screen w-screen bg-no-repeat bg-cover bg-center ">
+        <div style={{height: "100dvh" }} className="  md:overflow-hidden relative dark:bg-dark1 bg-secBlue bg-backSVG h-full bg-no-repeat bg-cover bg-center ">
           <Nav theme={theme} setTheme={setTheme} />
           <HomePage />
           <div className=" absolute w-full bottom-0">
