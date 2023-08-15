@@ -3,14 +3,10 @@ import PropTypes from "prop-types";
 import { ethers } from "ethers";
 
 import { abi } from "../../contract-artifacts/abi";
+import { useEffect } from "react";
 
-const ReadPrice = ({ args }) => {
-  const {
-    data: bigNumberPrice,
-    // isError,
-    // error,
-    isLoading,
-  } = useContractRead({
+const ReadPrice = ({ args, setPrice }) => {
+  const { data: bigNumberPrice, isLoading } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi: abi,
     functionName: "price",
@@ -22,6 +18,10 @@ const ReadPrice = ({ args }) => {
     bigNumberPrice !== undefined
       ? ethers.formatEther(Number(bigNumberPrice).toString())
       : undefined;
+  console.log(price);
+  useEffect(() => {
+    setPrice(price);
+  }, [price]);
 
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none  border-none">
@@ -40,6 +40,7 @@ const ReadPrice = ({ args }) => {
 
 ReadPrice.propTypes = {
   args: PropTypes.string,
+  setPrice: PropTypes.func,
 };
 
 export default ReadPrice;

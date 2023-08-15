@@ -1,19 +1,18 @@
-// import react, { useState } from "react";
-import HomePage from "./Pages/HomePage";
-
 // WEB3 IMPORTS
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { mainnet, sepolia, base } from "@wagmi/core/chains";
-
 import { publicProvider } from "wagmi/providers/public";
-
-//FILE IMPORTS
-import { Nav, Footer } from "./Components";
 import { alchemyProvider } from "@wagmi/core/providers/alchemy";
 import { InjectedConnector } from "wagmi/connectors/injected";
 
+import { Toaster } from "react-hot-toast";
+
+//FILE IMPORTS
+import HomePage from "./Pages/HomePage";
+import { Nav, Footer } from "./Components";
+
 const { chains, publicClient } = configureChains(
-  [mainnet, sepolia, base],
+  [sepolia, mainnet, base],
   [
     alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_KEY }),
     publicProvider(),
@@ -37,6 +36,22 @@ function App() {
             <Footer />
           </div>
         </div>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          gutter={8}
+          containerClassName=""
+          containerStyle={{}}
+          toastOptions={{
+            // Define default options
+            className: "",
+            duration: 5000,
+            style: {
+              background: "#17338F",
+              color: "#fff",
+            },
+          }}
+        />
       </WagmiConfig>
     </>
   );

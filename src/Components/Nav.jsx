@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { darkMobile, Logo } from "../Assets";
-import { Button, Switch } from "../Components";
+import { useEffect } from "react";
+import { Logo } from "../Assets";
+import { Button } from "../Components";
 import { FiMoon } from "react-icons/fi";
 import { useAccount, useSwitchNetwork } from "wagmi";
 
@@ -9,7 +9,7 @@ function Nav() {
   const { address } = useAccount();
 
   useEffect(() => {
-    switchNetwork?.(chains[1].id);
+    switchNetwork?.(chains[0].id);
   }, [address]);
 
   return (

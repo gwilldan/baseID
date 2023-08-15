@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 import { InputField, DisplayCard } from "../Components";
 
@@ -40,7 +41,7 @@ function HomePage() {
 
   const search = () => {
     if (searchedName.length < 3) {
-      console.log("Name cannot be less than 3"); // replace with react hot toast
+      toast.error("Name cannot be less than 3 characters");
       return;
     }
     setToggle(!toggle);

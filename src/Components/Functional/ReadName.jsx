@@ -15,8 +15,8 @@ const ReadName = ({ args, tld, setIsNameAvail }) => {
   const isNotZeroAddress = ownerAddress !== ethers.ZeroAddress;
 
   useEffect(() => {
-    setIsNameAvail(isNotZeroAddress);
-  }, [args]);
+    setIsNameAvail(ownerAddress !== ethers.ZeroAddress);
+  }, [args, ownerAddress, setIsNameAvail]);
 
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none">

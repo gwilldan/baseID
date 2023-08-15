@@ -1,7 +1,6 @@
 import { BiSolidWallet } from "react-icons/bi";
-// import { Web3Button } from '@web3modal/react'
 
-import { useAccount, useConnect, useEnsName, useDisconnect } from "wagmi";
+import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { shortenAddress } from "../utils/helper";
 
