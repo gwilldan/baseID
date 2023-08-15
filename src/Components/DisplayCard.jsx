@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import ReadPrice from "./Functional/ReadPrice";
 import ReadName from "./Functional/ReadName";
@@ -24,6 +24,7 @@ function DisplayCard({ searchedName }) {
   const [eth, setEth] = useState(0.002);
   const [isNameAvail, setIsNameAvail] = useState(false);
   const [price, setPrice] = useState("");
+  const toastRef = useRef("");
 
   const add = () => {
     const newYear = year + 1;
@@ -86,12 +87,51 @@ function DisplayCard({ searchedName }) {
     },
   });
 
-  const { data, isError, isLoading, isSuccess, isFetching, isFetched } =
+  const { data, isSuccess, isLoading, isFetching, isFetched } =
     useWaitForTransaction({
-      hash: txHash,
+      hash: txHash?.hash,
     });
 
-  console.log(data);
+  const displayMiningTx = () => {
+    toastRef.current = toast.loading(
+      <p>
+        {" "}
+        <strong>{searchedName}</strong> domain name is being minted, please wait
+        ...
+      </p>
+    );
+  };
+
+  const updateMining = () => {
+    console.log("i ran");
+    toast.update(toastRef.current, {
+      render: (
+        <p>
+          {searchedName} has being minted.
+          <br />
+          <a
+            style={{ textDecoration: "underline" }}
+            href={`${import.meta.env.VITE_DEV_SCAN}/${data.transactionHash}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            view on basescan
+          </a>
+        </p>
+      ),
+      type: "success",
+      isLoading: false,
+      autoClose: "5000",
+    });
+  };
+
+  if (isFetching && !data) {
+    displayMiningTx();
+  }
+
+  if (isSuccess && isFetched && !isFetching && data) {
+    updateMining();
+  }
 
   return (
     <motion.div
@@ -122,7 +162,7 @@ function DisplayCard({ searchedName }) {
         className=" md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50"
         onClick={() => write?.()}
       >
-        Register
+        {isLoading ? "Minting ..." : "Register"}
       </button>
     </motion.div>
   );

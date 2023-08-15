@@ -7,7 +7,8 @@ import { publicProvider } from "wagmi/providers/public";
 import { alchemyProvider } from "@wagmi/core/providers/alchemy";
 import { InjectedConnector } from "wagmi/connectors/injected";
 
-import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //FILE IMPORTS
 import HomePage from "./Pages/HomePage";
@@ -46,23 +47,18 @@ function App() {
           <div className=" absolute w-full bottom-0">
             <Footer />
           </div>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </div>
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-          gutter={8}
-          containerClassName=""
-          containerStyle={{}}
-          toastOptions={{
-            // Define default options
-            className: "",
-            duration: 5000,
-            style: {
-              background: "#17338F",
-              color: "#fff",
-            },
-          }}
-        />
       </WagmiConfig>
     </>
   );
