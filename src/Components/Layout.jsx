@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 import Nav from "./Nav";
 import Footer from "./Footer";
 
@@ -19,6 +21,10 @@ const Layout = ({ children }) => {
       <Footer />
     </div>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.element,
 };
 
 export default Layout;
