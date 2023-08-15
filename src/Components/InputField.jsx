@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 
 function InputField({ endAdornment, ...props }) {
   return (
-    <div
-      className=" h-14 md:h-16 justify-between bg-white 
-        mt-6 flex
-    "
+    <div className=" h-14 md:h-16 justify-between bg-white 
+    mt-6 flex "
     >
       <input
         type="text"
@@ -15,7 +13,7 @@ function InputField({ endAdornment, ...props }) {
         {...props}
       />
       {endAdornment && (
-        <div className=" flex items-center justify-between gap-2 px-2 md:px-3">
+        <div className=" flex border items-center justify-between gap-2 px-2 md:px-3">
           {endAdornment}
         </div>
       )}

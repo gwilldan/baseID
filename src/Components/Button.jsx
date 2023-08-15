@@ -23,7 +23,7 @@ function Button() {
         return add
     }
 
-    const butStyles = " bg-priBlue text-white md:text-small px-2 py-2 md:px-3 md:py-3 border-none rounded-lg"
+    const butStyles = " bg-priBlue text-white  md:text-small px-2 py-2 md:px-3 md:py-3 border-none rounded-lg"
 
   return (
     <div>

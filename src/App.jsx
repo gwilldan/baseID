@@ -1,4 +1,4 @@
-// import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import HomePage from "./Pages/HomePage";
 
 // WEB3 IMPORTS
@@ -26,11 +26,21 @@ const config = createConfig({
 });
 
 function App() {
+
+  const [theme, setTheme] = useState("light")
+  useEffect(() => {
+    if(theme === "dark"){
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+
   return (
     <>
       <WagmiConfig config={config}>
-        <div className=" relative bg-secBlue bg-backSVG h-screen w-screen bg-no-repeat bg-cover bg-center ">
-          <Nav />
+        <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG h-screen w-screen bg-no-repeat bg-cover bg-center ">
+          <Nav theme={theme} setTheme={setTheme} />
           <HomePage />
           <div className=" absolute w-full bottom-0">
             <Footer />
