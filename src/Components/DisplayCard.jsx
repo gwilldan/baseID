@@ -134,7 +134,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
 
   const handleError = (error) => {
     const parsedError = parseErrorDetails(error);
-    if (parsedError.error.includes("insufficient funds"))
+    if (parsedError?.error?.includes("insufficient funds"))
       return "Insufficient funds";
   };
 
