@@ -48,12 +48,7 @@ function HomePage() {
     setToggle(!toggle);
   };
 
-  const handleInputChange = (event) => {
-    const newValue = event.target.value.replace(/\s/g, ""); // Remove spaces
-    setSearchedName(newValue);
-  };
-
-  console.log(searchedName);
+  // console.log(data);
 
   return (
     <motion.div
@@ -77,8 +72,7 @@ function HomePage() {
 
       <motion.div variants={childVariant}>
         <InputField
-          onChange={handleInputChange}
-          onKeyDown={(e) => e.key === " " && e.preventDefault()}
+          onChange={(e) => setSearchedName(e.target.value)}
           endAdornment={
             <>
               <p className=" md:mr-4 md:text-xl">.base</p>
