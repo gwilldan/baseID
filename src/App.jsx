@@ -44,7 +44,7 @@ function App() {
         <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG min-h-screen w-screen bg-no-repeat bg-cover bg-center ">
           <Nav theme={theme} setTheme={setTheme} />
           <HomePage />
-          <div className=" absolute w-full bottom-0">
+          <div className="w-full">
             <Footer />
           </div>
           <ToastContainer
