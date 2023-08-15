@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 //FILE IMPORTS
 import HomePage from "./Pages/HomePage";
-import { Nav, Footer } from "./Components";
 import Layout from "./Components/Layout";
 
 const { chains, publicClient } = configureChains(
