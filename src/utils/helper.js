@@ -7,7 +7,7 @@ export const parseErrorDetails = (errorMessage) => {
     /err: insufficient funds for gas \* price \+ value: address 0x[0-9a-fA-F]+ have (\d+) want (\d+) \(supplied gas \d+\)/.exec(
       errorMessage
     );
-  console.log(detailsMatch);
+
   if (!detailsMatch) {
     return null; // Unable to parse the error details
   }
