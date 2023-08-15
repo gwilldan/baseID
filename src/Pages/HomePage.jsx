@@ -42,13 +42,15 @@ function HomePage() {
   const search = () => {
     if (searchedName.length < 3) {
       toast.error("Name cannot be less than 3 characters");
-      console.log("omo");
       return;
     }
     setToggle(!toggle);
   };
 
-  // console.log(data);
+  const handleNameChange = (e) => {
+    const newValue = e.target.value.replace(/\s/g, "");
+    setSearchedName(newValue);
+  };
 
   return (
     <motion.div
@@ -72,7 +74,8 @@ function HomePage() {
 
       <motion.div variants={childVariant}>
         <InputField
-          onChange={(e) => setSearchedName(e.target.value)}
+          onChange={handleNameChange}
+          onKeyDown={(e) => e.key === " " && e.preventDefault()}
           endAdornment={
             <>
               <p className=" md:mr-4 md:text-xl">.base</p>
@@ -92,6 +95,7 @@ function HomePage() {
           toggle={toggle}
           setToggle={setToggle}
           searchedName={searchedName}
+          setSearchedName={setSearchedName}
         />
       )}
     </motion.div>

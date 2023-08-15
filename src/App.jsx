@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 //FILE IMPORTS
 import HomePage from "./Pages/HomePage";
-import { Nav, Footer } from "./Components";
+import Layout from "./Components/Layout";
 
 const { chains, publicClient } = configureChains(
   [sepolia, mainnet, base],
@@ -29,24 +29,16 @@ const config = createConfig({
 });
 
 function App() {
-  const [theme, setTheme] = useState("light");
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
   return (
     <>
       <WagmiConfig config={config}>
-        <div style={{height: "100dvh" }} className="  md:overflow-hidden relative dark:bg-dark1 bg-secBlue bg-backSVG h-full bg-no-repeat bg-cover bg-center ">
-          <Nav theme={theme} setTheme={setTheme} />
-          <HomePage />
-          <div className=" absolute w-full bottom-0">
-            <Footer />
-          </div>
+        <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG min-h-screen w-screen bg-no-repeat bg-cover bg-center ">
+          <Layout>
+            <HomePage />
+          </Layout>
+          {/* <div className="w-full">
+            
+          </div> */}
           <ToastContainer
             position="top-center"
             autoClose={5000}

@@ -10,6 +10,7 @@ const ReadName = ({ args, tld, setIsNameAvail }) => {
     functionName: "getDomainAddress",
     args: [`${args}.${tld}`],
     chainId: import.meta.env.VITE_DEV_CHAIN_ID,
+    watch: true,
   });
 
   const isNotZeroAddress = ownerAddress !== ethers.ZeroAddress;
