@@ -15,7 +15,7 @@ import {
 import { parseErrorDetails } from "../utils/helper";
 import { ethers } from "ethers";
 
-function DisplayCard({ searchedName }) {
+function DisplayCard({ searchedName, setSearchedName }) {
   //GROUP STYLING FOR DISPLAY CARD
   const cardStyle = "border-b border-[#17338F] py-4 md:border-none";
   const dataStyle = "text-lg font-bold";
@@ -131,6 +131,7 @@ function DisplayCard({ searchedName }) {
 
   if (isSuccess && isFetched && !isFetching && data) {
     updateMining();
+    setSearchedName("");
   }
 
   return (
@@ -170,6 +171,7 @@ function DisplayCard({ searchedName }) {
 
 DisplayCard.propTypes = {
   searchedName: PropTypes.string,
+  setSearchedName: PropTypes.func,
 };
 
 export default DisplayCard;
