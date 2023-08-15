@@ -76,7 +76,6 @@ function DisplayCard({ searchedName }) {
   const { data: txHash, write } = useContractWrite(config, {
     onError(error) {
       const parseError = parseErrorDetails(error.message);
-      console.log(parseError.error.includes("insufficient funds"));
       if (parseError.error?.includes("insufficient funds")) {
         toast.error(
           `insufficient funds, user have ${
@@ -103,7 +102,6 @@ function DisplayCard({ searchedName }) {
   };
 
   const updateMining = () => {
-    console.log("i ran");
     toast.update(toastRef.current, {
       render: (
         <p>
@@ -158,7 +156,7 @@ function DisplayCard({ searchedName }) {
       </div>
       <ReadPrice args={searchedName} setPrice={setPrice} />
       <button
-        disabled={isNameAvail || !write}
+        disabled={isNameAvail || !write || isFetching}
         className=" md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50"
         onClick={() => write?.()}
       >
