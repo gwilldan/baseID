@@ -20,7 +20,7 @@ const ReadName = ({ args, tld, setIsNameAvail }) => {
 
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none">
-      <p className="text-lg font-bold">{args}.base</p>
+      <p className=" dark:text-white text-lg font-bold">{args}.base</p>
       {isNotZeroAddress && <p className="text-red-600">Unavailable</p>}
       {!isNotZeroAddress && args.length >= 3 && (
         <p className=" text-green-600">Available</p>

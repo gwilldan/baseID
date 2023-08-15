@@ -8,6 +8,9 @@ export default {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
+  darkMode: "class",
+
   theme: {
     extend: {
       backgroundImage: {
@@ -18,7 +21,9 @@ export default {
         "secBlue": "#DBE6FE",
         "lightBlue": "#e3e9f9",
         "priBlack": "#0C0C0C",
-        "secBlack": "#1E1E1E"
+        "secBlack": "#1E1E1E",
+        "dark1":"#05080A",
+        "dark2" : "#151F25"
       },
 
       padding: {
