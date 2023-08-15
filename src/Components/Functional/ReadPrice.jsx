@@ -26,14 +26,14 @@ const ReadPrice = ({ args, setPrice }) => {
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none  border-none">
       {isLoading ? (
-        "Fetching price"
+        <p className=" dark:text-white">Fetching price</p> 
       ) : (
-        <p className="text-lg font-bold">
+        <p className=" dark:text-white text-lg font-bold">
           {price === undefined ? "Unrecognized name length" : `${price} eth`}
         </p>
       )}
       {/* {isError && <p className="text-lg font-bold">{error.name}</p>} */}
-      <p>Registration Price</p>
+      <p className=" dark:font-semibold dark:text-white">Registration Price</p>
     </div>
   );
 };

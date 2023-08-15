@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 // WEB3 IMPORTS
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { mainnet, sepolia, base } from "@wagmi/core/chains";
@@ -26,11 +28,20 @@ const config = createConfig({
 });
 
 function App() {
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
   return (
     <>
       <WagmiConfig config={config}>
-        <div className=" relative bg-secBlue bg-backSVG h-screen w-screen bg-no-repeat bg-cover bg-center ">
-          <Nav />
+        <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG h-screen w-screen bg-no-repeat bg-cover bg-center ">
+          <Nav theme={theme} setTheme={setTheme} />
           <HomePage />
           <div className=" absolute w-full bottom-0">
             <Footer />
