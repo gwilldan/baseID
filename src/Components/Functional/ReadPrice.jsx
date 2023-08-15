@@ -18,15 +18,15 @@ const ReadPrice = ({ args, setPrice }) => {
     bigNumberPrice !== undefined
       ? ethers.formatEther(Number(bigNumberPrice).toString())
       : undefined;
-
+  console.log(price);
   useEffect(() => {
     setPrice(price);
-  }, [price, setPrice]);
+  }, [price]);
 
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none  border-none">
       {isLoading ? (
-        <p className=" dark:text-white">Fetching price</p>
+        <p className=" dark:text-white">Fetching price</p> 
       ) : (
         <p className=" dark:text-white text-lg font-bold">
           {price === undefined ? "Unrecognized name length" : `${price} eth`}
