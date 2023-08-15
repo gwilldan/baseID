@@ -65,7 +65,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
     functionName: "tld",
   });
 
-  const { config } = usePrepareContractWrite({
+  const { config, error, isError } = usePrepareContractWrite({
     address: import.meta.env.VITE_CA,
     abi,
     functionName: "registerDomain",
@@ -132,6 +132,12 @@ function DisplayCard({ searchedName, setSearchedName }) {
     setSearchedName("");
   }
 
+  const handleError = (error) => {
+    const parsedError = parseErrorDetails(error);
+    if (parsedError.error.includes("insufficient funds"))
+      return "Insufficient funds";
+  };
+
   return (
     <motion.div
       initial="start"
@@ -161,7 +167,11 @@ function DisplayCard({ searchedName, setSearchedName }) {
         className=" md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50"
         onClick={() => write?.()}
       >
-        {isLoading ? "Minting ..." : "Register"}
+        {isLoading
+          ? "Minting ..."
+          : isError
+          ? handleError(error.message)
+          : "Register"}
       </button>
     </motion.div>
   );
