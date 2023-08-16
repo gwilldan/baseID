@@ -47,7 +47,7 @@ function Nav({
   // console.log(theme);
   return (
     <div
-      className="dark:bg-priBlack bg-secBlue z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
+      className=" bg-primary-color z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
       flex justify-between md:pt-[40px] px-small md:px-[40px] 
       lg:px-Large pb-small "
     >
