@@ -62,13 +62,23 @@ function Nav({
       <div className=" flex gap-4 items-center">
         <NavLink
           to="./"
-          className=" hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white "
+          className={`${({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "active"
+              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
         >
           Home
         </NavLink>
         <NavLink
           to="./Profile"
-          className=" hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white "
+          className={`${({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "active"
+              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
         >
           Profile
         </NavLink>
