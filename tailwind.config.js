@@ -21,7 +21,7 @@ export default {
         // secBlue: "#DBE6FE",
         "primary-color": "rgb(var(--primary-color))",
         "accent-color": "rgb(var(--accent-color))",
-        lightBlue: "#e3e9f9",
+        "secondary-color": "var(--secondary-color)",
         priBlack: "#0C0C0C",
         secBlack: "#1E1E1E",
         dark1: "#05080A",
