@@ -1,21 +1,25 @@
+import PropTypes from "prop-types";
+import { useAccount, useDisconnect } from "wagmi";
 import { BiSolidWallet } from "react-icons/bi";
 
-import { useAccount, useConnect, useDisconnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
 import { shortenAddress } from "../utils/helper";
 
-function Button({modalToggle, setModalToggle}) {
+function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
-  // const { data: ensName } = useEnsName({ address });
-  const { connect, connectors } = useConnect({
-    connector: new InjectedConnector(),
-  });
 
   const { disconnect } = useDisconnect({
     onError(error) {
       console.log(error);
     },
   });
+
+  const handleConnectButton = () => {
+    if (isConnected) {
+      disconnect();
+    } else {
+      setModalToggle(true);
+    }
+  };
 
   const butStyles =
     "  hover:bg-blue-500 active:bg-priBlue bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
@@ -26,7 +30,7 @@ function Button({modalToggle, setModalToggle}) {
         <button
           className={`${butStyles} font-normal text-sm`}
           // onClick={() => connect({ connector: connectors[0] })}
-          onClick = {() => setModalToggle(true)}
+          onClick={handleConnectButton}
         >
           CONNECT WALLET
         </button>
@@ -35,7 +39,7 @@ function Button({modalToggle, setModalToggle}) {
           <button
             className={`${butStyles}  px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center`}
             // onClick={() => disconnect()}
-            onClick = {() => setModalToggle(true)}
+            onClick={handleConnectButton}
           >
             <BiSolidWallet fontSize={24} />
             {shortenAddress(address)}
@@ -45,5 +49,9 @@ function Button({modalToggle, setModalToggle}) {
     </div>
   );
 }
+
+Button.propTypes = {
+  setModalToggle: PropTypes.func,
+};
 
 export default Button;

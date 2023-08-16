@@ -20,7 +20,7 @@ function HomePage() {
 
   const handleNameChange = (e) => {
     const newValue = e.target.value.replace(/\s/g, "");
-    setSearchedName(newValue);
+    setSearchedName(newValue.toLowerCase());
   };
 
   return (
