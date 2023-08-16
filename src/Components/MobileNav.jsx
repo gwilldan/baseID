@@ -5,7 +5,7 @@ import { Button } from "../Components";
 
 const MobileNav = ({ setOpen, modalToggle, setModalToggle }) => {
   return (
-    <div className=" dark:bg-priBlack bg-secBlue h-[70px] flex items-center justify-evenly">
+    <div className=" bg-primary-color h-[70px] flex items-center justify-evenly">
       <NavLink
         onClick={() => setOpen(false)}
         className={`dark:text-white`}

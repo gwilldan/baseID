@@ -15,7 +15,7 @@ const Layout = () => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className=" w-full h-screen flex flex-col">
+    <div className=" w-full flex flex-col">
       <Nav
         theme={theme}
         setTheme={setTheme}
