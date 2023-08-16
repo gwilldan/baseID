@@ -1,10 +1,11 @@
 import { useConnect } from "wagmi";
 import PropTypes from "prop-types";
 
-function WalletConnect({ modalToggle, setModalToggle }) {
+function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
   const { connect, connectors } = useConnect({
     async onSuccess() {
       setModalToggle(false);
+      setOpen(false);
     },
   });
 
@@ -45,7 +46,9 @@ function WalletConnect({ modalToggle, setModalToggle }) {
             }}
           >
             <img src={`/images/${connector.id}.svg`} alt={connector.id} />
-            <div className=" text-xl font-bold">{connector.name}</div>
+            <div className=" text-black text-xl font-bold">
+              {connector.name}
+            </div>
             <div>{i.text}</div>
           </button>
         ))}
@@ -57,6 +60,7 @@ function WalletConnect({ modalToggle, setModalToggle }) {
 WalletConnect.propTypes = {
   modalToggle: PropTypes.bool,
   setModalToggle: PropTypes.func,
+  setOpen: PropTypes.func,
 };
 
 export default WalletConnect;

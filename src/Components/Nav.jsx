@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Logo, LogoDark } from "../Assets";
 import { Button, MobileNav } from "../Components";
+
+import { useDarkMode } from "../Hooks/useTheme";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { useAccount, useSwitchNetwork } from "wagmi";
 import { Squash } from "hamburger-react";
@@ -9,8 +11,8 @@ import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
 function Nav({
-  theme,
-  setTheme,
+  // theme,
+  // setTheme,
   modalToggle,
   setModalToggle,
   setOpen,
@@ -18,6 +20,8 @@ function Nav({
 }) {
   const { chains, switchNetwork } = useSwitchNetwork();
   const { address } = useAccount();
+
+  const { theme, themeToggler } = useDarkMode();
 
   useEffect(() => {
     switchNetwork?.(chains[0].id);
@@ -40,10 +44,10 @@ function Nav({
       opacity: 1,
     },
   };
-
+  // console.log(theme);
   return (
     <div
-      className=" dark:bg-priBlack bg-secBlue z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
+      className="dark:bg-priBlack bg-secBlue z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
       flex justify-between md:pt-[40px] px-small md:px-[40px] 
       lg:px-Large pb-small "
     >
@@ -58,21 +62,18 @@ function Nav({
       <div className=" flex gap-4 items-center">
         <NavLink
           to="./"
-          className=" hover:text-priBlue text-lg hidden md:block font-semibold "
+          className=" hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white "
         >
           Home
         </NavLink>
         <NavLink
           to="./Profile"
-          className=" hover:text-priBlue text-lg hidden md:block font-semibold "
+          className=" hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white "
         >
           Profile
         </NavLink>
 
-        <button
-          className=""
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        >
+        <button className="" onClick={() => themeToggler()}>
           {theme === "light" ? (
             <FiMoon className=" hover:text-priBlue text-2xl" />
           ) : (
@@ -92,7 +93,7 @@ function Nav({
         </div>
 
         <div className=" hidden md:block">
-          <Button setModalToggle={setModalToggle} />
+          <Button setModalToggle={setModalToggle} setOpen={setOpen} />
         </div>
       </div>
 

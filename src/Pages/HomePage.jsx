@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import {animVariant, childVariant} from "../utils/anim"
+import { animVariant, childVariant } from "../utils/anim";
 
 import { InputField, DisplayCard } from "../Components";
 
@@ -32,7 +32,7 @@ function HomePage() {
       className=" mt-[90px] md:mt-[130px] px-small md:px-[40px] lg:px-Large rounded-sm"
     >
       <div className=" max-w-[700px] ">
-        <motion.p className=" dark:text-white text font-extrabold text-3xl md:text-7xl mb-2">
+        <motion.p className=" --accent-color text font-extrabold text-3xl md:text-7xl mb-2">
           Your Base identity <br /> Starts Here
         </motion.p>
         <motion.p
@@ -69,7 +69,6 @@ function HomePage() {
           setSearchedName={setSearchedName}
         />
       )}
-
     </motion.div>
   );
 }

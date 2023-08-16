@@ -9,6 +9,8 @@
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
+  --primary-color: 219, 230, 254;
+  --accent-color: #000;
 
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
@@ -23,5 +25,16 @@
 
 body {
   min-height: 100vh;
-  background-color: rgb(219 230 254 / 1);
+  background: rgb(var(--primary-color));
+  color: var(--accent-color);
+}
+
+body.light-theme {
+  --primary-color: 219, 230, 254;
+  --accent-color: #000;
+}
+
+body.dark-theme {
+  --primary-color: 5, 8, 10;
+  --accent-color: #fff;
 }

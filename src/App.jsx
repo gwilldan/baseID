@@ -5,7 +5,6 @@ import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { mainnet, sepolia, base } from "@wagmi/core/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { alchemyProvider } from "@wagmi/core/providers/alchemy";
-// import { InjectedConnector } from "wagmi/connectors/injected";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
@@ -58,7 +57,7 @@ function App() {
   return (
     <>
       <WagmiConfig config={config}>
-        <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG min-h-screen w-screen bg-no-repeat bg-cover bg-center ">
+        <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG  w-screen bg-no-repeat bg-cover bg-center ">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Layout />}>

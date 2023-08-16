@@ -8,11 +8,12 @@ import WalletConnect from "./WalletConnect";
 
 const Layout = () => {
   const [theme, setTheme] = useState("light");
+
   useEffect(() => {
     if (theme === "dark") {
-      document.documentElement.classList.add("dark");
+      document.body.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
     }
   }, [theme]);
 
@@ -21,9 +22,9 @@ const Layout = () => {
 
   // STATE OF HAMBURGER TOGGLE
   const [isOpen, setOpen] = useState(false);
-
+  //dark:bg-dark1
   return (
-    <div className=" dark:bg-dark1 bg-secBlue w-full h-screen flex flex-col">
+    <div className="bg-primary-color w-full h-screen flex flex-col">
       <Nav
         theme={theme}
         setTheme={setTheme}
