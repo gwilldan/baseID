@@ -1,22 +1,34 @@
-import React from 'react'
-import {motion} from "framer-motion"
-import {Button} from "../Components"
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function MobileNav({setOpen, modalToggle, setModalToggle }) {
+import { Button } from "../Components";
 
-
+const MobileNav = ({ setOpen, modalToggle, setModalToggle }) => {
   return (
-    <div 
-        initial = {{
-        }}
-        className=' dark:bg-priBlack bg-secBlue h-[70px] flex items-center justify-evenly'
-    >
-        <NavLink onClick={() => setOpen(false)} className={`dark:text-white`} to="./">Home</NavLink>
-        <NavLink onClick={() => setOpen(false)}  className={`dark:text-white`} to="./Profile">Profile</NavLink>
-        <Button modalToggle={modalToggle} setModalToggle={setModalToggle}/>
+    <div className=" dark:bg-priBlack bg-secBlue h-[70px] flex items-center justify-evenly">
+      <NavLink
+        onClick={() => setOpen(false)}
+        className={`dark:text-white`}
+        to="./"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        onClick={() => setOpen(false)}
+        className={`dark:text-white`}
+        to="./Profile"
+      >
+        Profile
+      </NavLink>
+      <Button modalToggle={modalToggle} setModalToggle={setModalToggle} />
     </div>
-  )
-}
+  );
+};
 
-export default MobileNav
+MobileNav.propTypes = {
+  setOpen: PropTypes.func,
+  modalToggle: PropTypes.bool,
+  setModalToggle: PropTypes.func,
+};
+
+export default MobileNav;

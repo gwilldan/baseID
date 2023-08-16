@@ -4,7 +4,7 @@ export default {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
- 
+
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -14,24 +14,25 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'backSVG': "url(./src/Assets/BACKGROUND.svg)"
+        backSVG: "url(./src/Assets/BACKGROUND.svg)",
       },
       colors: {
-        "priBlue": "#2151F5",
-        "secBlue": "#DBE6FE",
-        "lightBlue": "#e3e9f9",
-        "priBlack": "#0C0C0C",
-        "secBlack": "#1E1E1E",
-        "dark1":"#05080A",
-        "dark2" : "#151F25"
+        priBlue: "#2151F5",
+        // secBlue: "#DBE6FE",
+        "primary-color": "var(--primary-color)",
+        "--accent-color": "var(--accent-color)",
+        lightBlue: "#e3e9f9",
+        priBlack: "#0C0C0C",
+        secBlack: "#1E1E1E",
+        dark1: "#05080A",
+        dark2: "#151F25",
       },
 
       padding: {
-        "Large": "150px",
-        "small": "20px"
-      }
+        Large: "150px",
+        small: "20px",
+      },
     },
   },
   plugins: [],
-}
-
+};
