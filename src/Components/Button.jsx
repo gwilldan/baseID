@@ -4,7 +4,7 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { shortenAddress } from "../utils/helper";
 
-function Button() {
+function Button({modalToggle, setModalToggle}) {
   const { address, isConnected } = useAccount();
   // const { data: ensName } = useEnsName({ address });
   const { connect, connectors } = useConnect({
@@ -25,15 +25,17 @@ function Button() {
       {!isConnected ? (
         <button
           className={`${butStyles} font-normal text-sm`}
-          onClick={() => connect({ connector: connectors[0] })}
+          // onClick={() => connect({ connector: connectors[0] })}
+          onClick = {() => setModalToggle(true)}
         >
           CONNECT WALLET
         </button>
       ) : (
         isConnected && (
           <button
-            className={`${butStyles} px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center`}
-            onClick={() => disconnect()}
+            className={`${butStyles}  px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center`}
+            // onClick={() => disconnect()}
+            onClick = {() => setModalToggle(true)}
           >
             <BiSolidWallet fontSize={24} />
             {shortenAddress(address)}

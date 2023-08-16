@@ -30,6 +30,9 @@ const config = createConfig({
 });
 
 function App() {
+
+  const [modal, setModal] = useState(false)
+
   return (
     <>
       <WagmiConfig config={config}>
@@ -42,9 +45,7 @@ function App() {
               </Routes> 
             </Layout>
           </BrowserRouter>
-          {/* <div className="w-full">
-            
-          </div> */}
+
           <ToastContainer
             position="top-center"
             autoClose={5000}

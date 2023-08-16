@@ -8,7 +8,7 @@ import {Squash} from "hamburger-react"
 import {motion} from "framer-motion"
 import { NavLink } from "react-router-dom";
 
-function Nav({ theme, setTheme }) {
+function Nav({ theme, setTheme, modalToggle, setModalToggle , setOpen, isOpen}) {
   const { chains, switchNetwork } = useSwitchNetwork();
   const { address } = useAccount();
 
@@ -16,11 +16,10 @@ function Nav({ theme, setTheme }) {
     switchNetwork?.(chains[0].id);
   }, [address]);
 
-  const [isOpen, setOpen] = useState(false)
 
- const toggling = () => {
-  setOpen(!isOpen)
- }
+  const toggling = () => {
+    setOpen(!isOpen)
+  }
 
 
   const anim = {
@@ -83,7 +82,9 @@ function Nav({ theme, setTheme }) {
           />
         </div>
         
-        <div className=" hidden md:block"><Button /></div>
+        <div className=" hidden md:block">
+          <Button modalToggle={modalToggle} setModalToggle={setModalToggle}/>
+        </div>
       </div>
 
                 {/*  MOBILE NAV */}
@@ -96,7 +97,7 @@ function Nav({ theme, setTheme }) {
         className=" -z-50 hidden md:hidden w-full absolute bottom-0 
          ml-[-20px] shadow-xl"
       >
-        <MobileNav  setOpen={setOpen}/>
+        <MobileNav  setOpen={setOpen} modalToggle={modalToggle} setModalToggle={setModalToggle}/>
       </motion.div>
     </div>
   );
