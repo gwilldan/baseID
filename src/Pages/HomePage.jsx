@@ -2,42 +2,13 @@ import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import {animVariant, childVariant} from "../utils/anim"
 
 import { InputField, DisplayCard } from "../Components";
 
 function HomePage() {
   const [toggle, setToggle] = useState(false);
   const [searchedName, setSearchedName] = useState("");
-
-  // animation controls
-  const animVariant = {
-    begin: {
-      opacity: 0,
-      y: -20,
-    },
-
-    end: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeInOut",
-        when: "beforeChildren",
-      },
-    },
-  };
-
-  const childVariant = {
-    begin: {
-      opacity: 0,
-      y: -20,
-    },
-
-    end: {
-      opacity: 1,
-      y: 0,
-    },
-  };
 
   const search = () => {
     if (searchedName.length < 3) {
@@ -98,6 +69,7 @@ function HomePage() {
           setSearchedName={setSearchedName}
         />
       )}
+
     </motion.div>
   );
 }

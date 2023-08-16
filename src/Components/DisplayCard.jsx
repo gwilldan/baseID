@@ -164,7 +164,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
       <ReadPrice args={searchedName} setPrice={setPrice} />
       <button
         disabled={isNameAvail || !write}
-        className=" md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50"
+        className={` ${ isNameAvail || "hover:bg-blue-500 active:bg-priBlue" }  md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50 `}
         onClick={() => write?.()}
       >
         {isLoading
