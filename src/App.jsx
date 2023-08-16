@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 // WEB3 IMPORTS
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { mainnet, sepolia, base } from "@wagmi/core/chains";
