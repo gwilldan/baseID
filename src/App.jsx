@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // WEB3 IMPORTS
@@ -6,7 +5,10 @@ import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { mainnet, sepolia, base } from "@wagmi/core/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { alchemyProvider } from "@wagmi/core/providers/alchemy";
-import { InjectedConnector } from "wagmi/connectors/injected";
+// import { InjectedConnector } from "wagmi/connectors/injected";
+import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,24 +27,45 @@ const { chains, publicClient } = configureChains(
 
 const config = createConfig({
   autoConnect: true,
-  connectors: [new InjectedConnector({ chains })],
+  connectors: [
+    new MetaMaskConnector({ chains }),
+    new CoinbaseWalletConnector({
+      chains,
+      options: {
+        appName: "baseid.domain",
+        jsonRpcUrl: `https://eth-mainnet.alchemyapi.io/v2/${
+          import.meta.env.VITE_ALCHEMY_KEY
+        }`,
+      },
+    }),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
+        metadata: {
+          name: "Base ID",
+          description: "my domain app",
+          url: import.meta.env.VITE_APP_URL,
+          icons: ["https://wagmi.sh/icon.png"],
+        },
+      },
+    }),
+  ],
   publicClient,
 });
 
 function App() {
-  const [modal, setModal] = useState(false);
-
   return (
     <>
       <WagmiConfig config={config}>
         <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG min-h-screen w-screen bg-no-repeat bg-cover bg-center ">
           <BrowserRouter>
-            <Layout>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route path="" element={<HomePage />} />
                 <Route path="/Profile" element={<Profile />} />
-              </Routes>
-            </Layout>
+              </Route>
+            </Routes>
           </BrowserRouter>
 
           <ToastContainer
