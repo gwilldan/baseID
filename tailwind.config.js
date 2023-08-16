@@ -20,7 +20,7 @@ export default {
         priBlue: "#2151F5",
         // secBlue: "#DBE6FE",
         "primary-color": "rgb(var(--primary-color))",
-        "--accent-color": "rgb(var(--accent-color))",
+        "accent-color": "rgb(var(--accent-color))",
         lightBlue: "#e3e9f9",
         priBlack: "#0C0C0C",
         secBlack: "#1E1E1E",

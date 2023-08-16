@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 function InputField({ endAdornment, ...props }) {
   return (
-    <div className=" h-14 md:h-16 justify-between bg-white 
+    <div
+      className=" h-14 md:h-16 justify-between bg-white 
     mt-6 flex "
     >
       <input
         type="text"
-        className=" focus:outline-none md:text-xl w-[80%] px-5 flex items-center"
+        className=" text-black focus:outline-none md:text-xl w-[80%] px-5 flex items-center"
         placeholder=" Search Base names"
         {...props}
       />
