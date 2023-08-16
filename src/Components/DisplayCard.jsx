@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import ReadPrice from "./Functional/ReadPrice";
 import ReadName from "./Functional/ReadName";
 import { abi } from "../contract-artifacts/abi";
+
 import {
   useContractRead,
   useContractWrite,
@@ -138,12 +139,16 @@ function DisplayCard({ searchedName, setSearchedName }) {
       return "Insufficient funds";
   };
 
+
   return (
     <motion.div
       initial="start"
       animate="stop"
       variants={animVariant}
-      className={` dark:bg-dark2 md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 bg-lightBlue flex flex-col md:flex-row md:justify-between md:items-center`}
+      className={` md:h-[75px] rounded-3xl my-6 
+        px-2 pb-5 md:p-5 bg-lightBlue flex flex-col md:flex-row 
+        md:justify-between md:items-center`
+      }
     >
       <ReadName args={searchedName} tld={tld} setIsNameAvail={setIsNameAvail} />
 
