@@ -136,6 +136,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
     const parsedError = parseErrorDetails(error);
     if (parsedError?.error?.includes("insufficient funds"))
       return "Insufficient funds";
+    else return "Register";
   };
 
   return (
@@ -143,7 +144,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
       initial="start"
       animate="stop"
       variants={animVariant}
-      className={` dark:bg-dark2 md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 bg-lightBlue flex flex-col md:flex-row md:justify-between md:items-center`}
+      className={`bg-secondary-color md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 flex flex-col md:flex-row md:justify-between md:items-center`}
     >
       <ReadName args={searchedName} tld={tld} setIsNameAvail={setIsNameAvail} />
 
@@ -164,7 +165,9 @@ function DisplayCard({ searchedName, setSearchedName }) {
       <ReadPrice args={searchedName} setPrice={setPrice} />
       <button
         disabled={isNameAvail || !write}
-        className={` ${ isNameAvail || "hover:bg-blue-500 active:bg-priBlue" }  md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50 `}
+        className={` ${
+          isNameAvail || "hover:bg-blue-500 active:bg-priBlue"
+        }  md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50 `}
         onClick={() => write?.()}
       >
         {isLoading
