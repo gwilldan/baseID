@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 // WEB3 IMPORTS
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
@@ -11,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //FILE IMPORTS
-import HomePage from "./Pages/HomePage";
+import {HomePage, Profile} from "./Pages";
 import Layout from "./Components/Layout";
 
 const { chains, publicClient } = configureChains(
@@ -33,9 +34,14 @@ function App() {
     <>
       <WagmiConfig config={config}>
         <div className=" relative dark:bg-dark1 bg-secBlue bg-backSVG min-h-screen w-screen bg-no-repeat bg-cover bg-center ">
-          <Layout>
-            <HomePage />
-          </Layout>
+          <BrowserRouter>
+            <Layout >
+              <Routes >
+                <Route path="/" element={<HomePage />} />
+                <Route path="/Profile" element={<Profile />} />
+              </Routes> 
+            </Layout>
+          </BrowserRouter>
           {/* <div className="w-full">
             
           </div> */}

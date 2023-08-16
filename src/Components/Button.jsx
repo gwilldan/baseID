@@ -18,7 +18,7 @@ function Button() {
   });
 
   const butStyles =
-    " bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
+    "  hover:bg-blue-500 active:bg-priBlue bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
 
   return (
     <div>
@@ -32,7 +32,7 @@ function Button() {
       ) : (
         isConnected && (
           <button
-            className={`${butStyles} py-5 px-9 border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center`}
+            className={`${butStyles} px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center`}
             onClick={() => disconnect()}
           >
             <BiSolidWallet fontSize={24} />

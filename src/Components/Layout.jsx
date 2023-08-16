@@ -15,10 +15,10 @@ const Layout = ({ children }) => {
   }, [theme]);
 
   return (
-    <div className="w-full h-screen flex flex-col">
-      <Nav theme={theme} setTheme={setTheme} />
-      <main className="w-full flex flex-col h-full">{children}</main>
-      <Footer />
+    <div className=" dark:bg-dark1 bg-secBlue w-full h-screen flex flex-col">
+        <Nav theme={theme} setTheme={setTheme} />
+          <main className="w-full flex flex-col h-full">{children}</main>
+        <Footer />
     </div>
   );
 };
