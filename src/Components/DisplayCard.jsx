@@ -138,7 +138,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
   const handleError = (error) => {
     const parsedError = parseErrorDetails(error);
     if (parsedError?.error?.includes("insufficient funds"))
-      return "Insufficient funds";
+      return "Insufficient ETH";
     else return "Register";
   };
 
@@ -185,6 +185,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
           </div>
 
           <ReadPrice args={searchedName} setPrice={setPrice} />
+
           <button
             disabled={isNameAvail || !write}
             className={` ${
