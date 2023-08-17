@@ -28,8 +28,6 @@ export const useDarkMode = () => {
 
   useEffect(() => {
     const localTheme = window.localStorage.getItem("theme") || theme;
-    console.log(localTheme);
-    console.log(theme);
     localTheme && setTheme(localTheme);
     document.body.classList.add(`${localTheme}-theme`);
   }, []);

@@ -47,9 +47,10 @@ function HomePage() {
         <InputField
           onChange={handleNameChange}
           onKeyDown={(e) => e.key === " " && e.preventDefault()}
+          value={searchedName}
           endAdornment={
             <>
-              <p className=" md:mr-4 md:text-xl">.base</p>
+              <p className="text-black md:mr-4 md:text-xl">.base</p>
               <button
                 onClick={search}
                 className="hover:scale-[1.2] text-priBlue active:text-red-500 active:scale-[1px] hover:text-priBlack hover:duration-75 hover:ease flex justify-center items-center"
