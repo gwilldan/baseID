@@ -10,15 +10,18 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
   });
 
   const isWalletAvailable = (walletType) => {
-    if (walletType === "metamask") {
+    console.log(walletType);
+    if (walletType === "metaMask") {
       return typeof window.ethereum !== "undefined";
-    } else if (walletType === "coinbase") {
+    } else if (walletType === "coinbaseWallet") {
       return (
         typeof window.ethereum &&
         window.ethereum?.isCoinbaseWallet !== undefined
       );
+    } else if (walletType === "walletConnect") {
+      return true;
     } else {
-      return false; // Default to false for unknown wallet types
+      return false;
     }
   };
 
@@ -34,24 +37,30 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
         onClick={(e) => e.stopPropagation()}
         className="  grid md:grid-cols-2 place-self-center 
             h-[570px] w-[350px] md:h-[340px] md:w-[600px] border-none
-            bg-white"
+            bg-white justify-center"
       >
-        {connectors.map((connector, i) => (
-          <button
-            key={i}
-            className=" hover:bg-slate-100 flex gap-1 flex-col 
-                    justify-center items-center"
-            onClick={() => {
-              connect({ connector });
-            }}
-          >
-            <img src={`/images/${connector.id}.svg`} alt={connector.id} />
-            <div className=" text-black text-xl font-bold">
-              {connector.name}
-            </div>
-            <div>{i.text}</div>
-          </button>
-        ))}
+        {connectors.map((connector, i) => {
+          if (isWalletAvailable(connector.id)) {
+            return (
+              <button
+                key={i}
+                className=" hover:bg-slate-100 flex gap-1 flex-col 
+                          justify-center items-center"
+                onClick={() => {
+                  connect({ connector });
+                }}
+              >
+                <img src={`/images/${connector.id}.svg`} alt={connector.id} />
+                <div className=" text-black text-xl font-bold">
+                  {connector.name}
+                </div>
+                <div>{i.text}</div>
+              </button>
+            );
+          } else {
+            return "";
+          }
+        })}
       </div>
     </div>
   );

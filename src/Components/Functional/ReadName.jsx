@@ -3,7 +3,7 @@ import { useContractRead } from "wagmi";
 import { abi } from "../../contract-artifacts/abi";
 import { ethers } from "ethers";
 import { useEffect } from "react";
-const ReadName = ({ args, tld, setIsNameAvail }) => {
+const ReadName = ({ args, tld, setIsNameAvail, setOwnerAddress }) => {
   const { data: ownerAddress } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi,
@@ -17,7 +17,8 @@ const ReadName = ({ args, tld, setIsNameAvail }) => {
 
   useEffect(() => {
     setIsNameAvail(ownerAddress !== ethers.ZeroAddress);
-  }, [args, ownerAddress, setIsNameAvail]);
+    setOwnerAddress(ownerAddress);
+  }, [args, ownerAddress, setIsNameAvail, setOwnerAddress]);
 
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none">
@@ -37,6 +38,7 @@ ReadName.propTypes = {
   args: PropTypes.string,
   tld: PropTypes.string,
   setIsNameAvail: PropTypes.func,
+  setOwnerAddress: PropTypes.func,
 };
 
 export default ReadName;

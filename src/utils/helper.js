@@ -1,5 +1,8 @@
-export const shortenAddress = (_add) => {
-  return _add.slice(0, 6) + "..." + _add.slice(38, 42);
+export const shortenAddress = (_add, startLength, endLength) => {
+  if (_add === undefined) return "0x";
+  if (startLength && endLength) {
+    return _add?.slice(0, startLength) + "..." + _add?.slice(endLength, 42);
+  } else return _add?.slice(0, 6) + " ... " + _add?.slice(38, 42);
 };
 
 export const parseErrorDetails = (errorMessage) => {
