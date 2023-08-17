@@ -38,7 +38,7 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
       >
         {connectors.map((connector, i) => (
           <button
-            key={i.id}
+            key={i}
             className=" hover:bg-slate-100 flex gap-1 flex-col 
                     justify-center items-center"
             onClick={() => {

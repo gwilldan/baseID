@@ -16,7 +16,7 @@ import {
 import { parseErrorDetails } from "../utils/helper";
 import { ethers } from "ethers";
 
-function DisplayCard({ searchedName, setSearchedName }) {
+function DisplayCard({ searchedName, setSearchedName, setToggle }) {
   //GROUP STYLING FOR DISPLAY CARD
   const cardStyle = "border-b border-[#17338F] py-4 md:border-none";
   const dataStyle = "text-lg font-bold";
@@ -131,6 +131,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
   if (isSuccess && isFetched && !isFetching && data) {
     updateMining();
     setSearchedName("");
+    setToggle(false);
   }
 
   const handleError = (error) => {
@@ -139,7 +140,6 @@ function DisplayCard({ searchedName, setSearchedName }) {
       return "Insufficient funds";
     else return "Register";
   };
-
 
   return (
     <motion.div
@@ -185,6 +185,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
 DisplayCard.propTypes = {
   searchedName: PropTypes.string,
   setSearchedName: PropTypes.func,
+  setToggle: PropTypes.func,
 };
 
 export default DisplayCard;

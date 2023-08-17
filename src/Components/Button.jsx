@@ -3,15 +3,28 @@ import { useAccount, useDisconnect } from "wagmi";
 import { BiSolidWallet } from "react-icons/bi";
 
 import { shortenAddress } from "../utils/helper";
+import { getUserSelectedName } from "../contract-artifacts/utils/helpers";
+import { useEffect, useState } from "react";
 
 function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
+  const [domainNames, setDomainNames] = useState("");
 
+  getUserSelectedName(address);
   const { disconnect } = useDisconnect({
     onError(error) {
       console.log(error);
     },
   });
+
+  // console.log();
+
+  useEffect(() => {
+    const fetchDomainNames = async () => {
+      setDomainNames(await getUserSelectedName(address));
+    };
+    address && fetchDomainNames();
+  }, [address]);
 
   const handleConnectButton = () => {
     if (isConnected) {
@@ -38,11 +51,10 @@ function Button({ setModalToggle }) {
         isConnected && (
           <button
             className={`${butStyles}  px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center`}
-            // onClick={() => disconnect()}
             onClick={handleConnectButton}
           >
             <BiSolidWallet fontSize={24} />
-            {shortenAddress(address)}
+            {domainNames[0]?.toUpperCase() || shortenAddress(address)}
           </button>
         )
       )}
