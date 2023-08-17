@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //FILE IMPORTS
-import { HomePage, Profile } from "./Pages";
+import { HomePage, DMail } from "./Pages";
 import Layout from "./Components/Layout";
 
 const { chains, publicClient } = configureChains(
@@ -61,14 +61,14 @@ function App() {
     </div>
       <WagmiConfig config={config}>
         <div className=" relative dark:bg-dark1 bg-secBlue 
-          bg-backSVG  w-screen bg-no-repeat bg-[length:1200px_2000px] bg-center md:bg-cover
+           bg-[url('./Assets/BACKGROUND.svg')] w-screen bg-no-repeat bg-[length:1200px_2000px] bg-center md:bg-cover
           md:bg-center no-scrollbar "
         >
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route path="" element={<HomePage />} />
-                <Route path="/Profile" element={<Profile />} />
+                <Route path="/DMail" element={<DMail />} />
               </Route>
             </Routes>
           </BrowserRouter>

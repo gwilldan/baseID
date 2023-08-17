@@ -13,9 +13,9 @@ export default {
 
   theme: {
     extend: {
-      backgroundImage: {
-        backSVG: "url(./src/Assets/BACKGROUND.svg)",
-      },
+      // backgroundImage: {
+      //   backSVG: "url(./src/Assets/BACKGROUND.svg)",
+      // },
       colors: {
         priBlue: "#2151F5",
         // secBlue: "#DBE6FE",
