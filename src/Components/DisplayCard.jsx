@@ -146,7 +146,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
       initial="start"
       animate="stop"
       variants={animVariant}
-      className={` dark:bg-dark2 md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 bg-lightBlue flex flex-col md:flex-row md:justify-between md:items-center`}
+      className={`bg-secondary-color md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 flex flex-col md:flex-row md:justify-between md:items-center`}
     >
       <ReadName args={searchedName} tld={tld} setIsNameAvail={setIsNameAvail} />
 
@@ -155,7 +155,7 @@ function DisplayCard({ searchedName, setSearchedName }) {
           <button onClick={subtract} className=" text-priBlue text-xl">
             <AiOutlineMinusCircle />
           </button>
-          <p className={`${dataStyle} dark:text-white`}>{year} Year</p>
+          <p className={`${dataStyle}  dark:text-white`}>{year} Year</p>
           <button onClick={add}>
             <AiOutlinePlusCircle className=" text-priBlue text-xl" />
           </button>

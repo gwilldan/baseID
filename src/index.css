@@ -11,7 +11,7 @@
   font-size: 16px;
   --primary-color: 219, 230, 254;
   --accent-color: #000;
-  --secondary-color: #e3e9f9;
+  --secondary-color: #e9effd;
 
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
@@ -48,11 +48,11 @@ body {
 body.light-theme {
   --primary-color: 219, 230, 254;
   --accent-color: #000;
-  --secondary-color: #e3e9f9;
+  --secondary-color: #e9effd;
 }
 
 body.dark-theme {
   --primary-color: 5, 8, 10;
   --accent-color: #fff;
-  --secondary-color: #05080a;
+  --secondary-color: #151F25;
 }
