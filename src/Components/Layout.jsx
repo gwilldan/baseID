@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import {Background} from "../Assets"
 
 import Nav from "./Nav";
 import Footer from "./Footer";

@@ -141,7 +141,6 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     else return "Register";
   };
 
-
   return (
     <motion.div
       initial="start"

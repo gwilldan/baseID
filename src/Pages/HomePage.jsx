@@ -9,7 +9,6 @@ import { InputField, DisplayCard } from "../Components";
 function HomePage() {
   const [toggle, setToggle] = useState(false);
   const [searchedName, setSearchedName] = useState("");
-
   const search = () => {
     if (searchedName.length < 3) {
       toast.error("Name cannot be less than 3 characters");
@@ -35,11 +34,9 @@ function HomePage() {
         <motion.p className=" --accent-color text font-extrabold text-3xl md:text-7xl mb-2">
           Unforgettable <br /> identity on Base
         </motion.p>
-        <motion.p
-          variants={childVariant}
-          className=" font-normal md:text-lg "
-        >
-          your wallet address becomes a breeze to remember - just like a web domain
+        <motion.p variants={childVariant} className=" font-normal md:text-lg ">
+          your wallet address becomes a breeze to remember - just like a web
+          domain
         </motion.p>
       </div>
 
