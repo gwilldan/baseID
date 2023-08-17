@@ -37,7 +37,7 @@ function HomePage() {
         </motion.p>
         <motion.p
           variants={childVariant}
-          className="  dark:text-white font-normal md:text-lg "
+          className=" font-normal md:text-lg "
         >
           Secure your base domain as you navigate through the Base ecosystem
         </motion.p>
