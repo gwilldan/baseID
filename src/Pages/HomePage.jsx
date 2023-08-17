@@ -28,7 +28,7 @@ function HomePage() {
       initial="begin"
       animate="end"
       transition="transit"
-      className=" mt-[90px] md:mt-[130px] px-small md:px-[40px] lg:px-Large rounded-sm"
+      className=" mt-[70px] md:mt-[130px] px-small md:px-[40px] lg:px-Large rounded-sm "
     >
       <div className=" max-w-[700px] ">
         <motion.p className=" --accent-color text font-extrabold text-3xl md:text-7xl mb-2">

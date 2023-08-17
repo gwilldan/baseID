@@ -72,6 +72,17 @@ function Nav({
           Home
         </NavLink>
         <NavLink
+          to="./Profile"
+          className={`${({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "active"
+              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
+        >
+          Profile
+        </NavLink>
+        <NavLink
           to="./DMail"
           className={`${({ isActive, isPending }) =>
             isPending
