@@ -11,7 +11,7 @@
   font-size: 16px;
   --primary-color: 219, 230, 254;
   --accent-color: #000;
-  --secondary-color: #e3e9f9;
+  --secondary-color: #e9effd;
 
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
@@ -22,10 +22,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  }
 }
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: rgb(var(--primary-color));
   color: var(--accent-color);
 }
@@ -33,11 +49,11 @@ body {
 body.light-theme {
   --primary-color: 219, 230, 254;
   --accent-color: #000;
-  --secondary-color: #e3e9f9;
+  --secondary-color: #e9effd;
 }
 
 body.dark-theme {
   --primary-color: 5, 8, 10;
   --accent-color: #fff;
-  --secondary-color: #05080a;
+  --secondary-color: #151F25;
 }

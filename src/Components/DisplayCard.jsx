@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import ReadPrice from "./Functional/ReadPrice";
 import ReadName from "./Functional/ReadName";
 import { abi } from "../contract-artifacts/abi";
+
 import {
   useContractRead,
   useContractWrite,
@@ -140,6 +141,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     else return "Register";
   };
 
+
   return (
     <motion.div
       initial="start"
@@ -154,7 +156,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
           <button onClick={subtract} className=" text-priBlue text-xl">
             <AiOutlineMinusCircle />
           </button>
-          <p className={`${dataStyle} dark:text-white`}>{year} Year</p>
+          <p className={`${dataStyle}  dark:text-white`}>{year} Year</p>
           <button onClick={add}>
             <AiOutlinePlusCircle className=" text-priBlue text-xl" />
           </button>

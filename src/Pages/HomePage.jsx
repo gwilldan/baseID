@@ -33,13 +33,13 @@ function HomePage() {
     >
       <div className=" max-w-[700px] ">
         <motion.p className=" --accent-color text font-extrabold text-3xl md:text-7xl mb-2">
-          Your Base identity <br /> Starts Here
+          Unforgettable <br /> identity on Base
         </motion.p>
         <motion.p
           variants={childVariant}
-          className="  dark:text-white font-normal md:text-lg "
+          className=" font-normal md:text-lg "
         >
-          Secure your base domain as you navigate through the Base ecosystem
+          your wallet address becomes a breeze to remember - just like a web domain
         </motion.p>
       </div>
 

@@ -72,7 +72,7 @@ function Nav({
           Home
         </NavLink>
         <NavLink
-          to="./Profile"
+          to="./DMail"
           className={`${({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -80,7 +80,7 @@ function Nav({
               ? "active"
               : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
         >
-          Profile
+          D-Mail
         </NavLink>
 
         <button className="" onClick={() => themeToggler()}>

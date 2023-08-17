@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import {Background} from "../Assets"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -15,7 +16,7 @@ const Layout = () => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className=" w-full flex flex-col h-screen md-h-auto">
+    <div className=" w-full flex flex-col  h-screen md-h-auto">
       <Nav
         theme={theme}
         setTheme={setTheme}
@@ -24,7 +25,7 @@ const Layout = () => {
         isOpen={isOpen}
         setOpen={setOpen}
       />
-      <main className="w-full flex flex-col h-auto md:h-full">
+      <main className="no-scrollbars w-full h-full flex flex-col md:h-full">
         {<Outlet />}
       </main>
       <WalletConnect
