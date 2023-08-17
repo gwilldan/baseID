@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
@@ -13,7 +13,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import { parseErrorDetails } from "../utils/helper";
+import { parseErrorDetails, shortenAddress } from "../utils/helper";
 import { ethers } from "ethers";
 
 function DisplayCard({ searchedName, setSearchedName, setToggle }) {
@@ -24,6 +24,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
   const [year, setYear] = useState(1);
   const [eth, setEth] = useState(0.002);
   const [isNameAvail, setIsNameAvail] = useState(false);
+  const [ownerAddress, setOwnerAddress] = useState("");
   const [price, setPrice] = useState("");
   const toastRef = useRef("");
 
@@ -146,38 +147,59 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
       initial="start"
       animate="stop"
       variants={animVariant}
-      className={`bg-secondary-color md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 flex flex-col md:flex-row md:justify-between md:items-center`}
+      className={`bg-secondary-color md:h-[75px] rounded-3xl my-6 px-2 pb-5 md:p-5 flex flex-col md:flex-row  ${
+        !isNameAvail && "md:justify-between"
+      } md:gap-16 md:items-center`}
     >
-      <ReadName args={searchedName} tld={tld} setIsNameAvail={setIsNameAvail} />
+      <ReadName
+        args={searchedName}
+        tld={tld}
+        setIsNameAvail={setIsNameAvail}
+        setOwnerAddress={setOwnerAddress}
+      />
+      {isNameAvail ? (
+        <div
+          className={`border-b border-[#17338F] py-4 md:border-none  border-none `}
+        >
+          <p className=" dark:text-white text-lg font-bold">Owner</p>
 
-      <div className={cardStyle}>
-        <div className=" flex items-center gap-2">
-          <button onClick={subtract} className=" text-priBlue text-xl">
-            <AiOutlineMinusCircle />
-          </button>
-          <p className={`${dataStyle}  dark:text-white`}>{year} Year</p>
-          <button onClick={add}>
-            <AiOutlinePlusCircle className=" text-priBlue text-xl" />
-          </button>
+          <p className=" dark:font-semibold dark:text-white tracking-widest">
+            {shortenAddress(ownerAddress, 12, 30) || "0x"}
+          </p>
         </div>
-        <p className=" dark:font-semibold dark:text-white">
-          Registration Period
-        </p>
-      </div>
-      <ReadPrice args={searchedName} setPrice={setPrice} />
-      <button
-        disabled={isNameAvail || !write}
-        className={` ${
-          isNameAvail || "hover:bg-blue-500 active:bg-priBlue"
-        }  md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50 `}
-        onClick={() => write?.()}
-      >
-        {isLoading
-          ? "Minting ..."
-          : isError
-          ? handleError(error.message)
-          : "Register"}
-      </button>
+      ) : (
+        <Fragment>
+          <div className={cardStyle}>
+            <div className=" flex items-center gap-2">
+              <button onClick={subtract} className=" text-priBlue text-xl">
+                <AiOutlineMinusCircle />
+              </button>
+              <p className={`${dataStyle}  dark:text-white`}>{year} Year</p>
+              <button onClick={add}>
+                <AiOutlinePlusCircle className=" text-priBlue text-xl" />
+              </button>
+            </div>
+            <p className=" dark:font-semibold dark:text-white">
+              Registration Period
+            </p>
+          </div>
+
+          <ReadPrice args={searchedName} setPrice={setPrice} />
+          <button
+            disabled={isNameAvail || !write}
+            className={` ${
+              isNameAvail || "hover:bg-blue-500 active:bg-priBlue"
+            }  md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50 `}
+            onClick={() => write?.()}
+          >
+            {isLoading
+              ? "Minting ..."
+              : isError
+              ? handleError(error.message)
+              : "Register"}
+          </button>
+        </Fragment>
+      )}
     </motion.div>
   );
 }
