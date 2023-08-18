@@ -10,17 +10,20 @@ function Profile() {
         {
             id: 1,
             domain: "Okon",
-            record: "Record for Okon"
+            record: "Record for Okon",
+            controller: true
         },
         {
             id: 2,
             domain: "Atim",
-            record: "Record for Atim"
+            record: "Record for Atim",
+            controller: false
         },
         {
             id: 3,
             domain: "David",
-            record: "Record for David"
+            record: "Record for David",
+            controller: false
         }
     ]
 
@@ -51,11 +54,16 @@ function Profile() {
                 <div className=' flex items-center justify-between mb-4 md:mb-8 
                     bg-secondary-color p-5 md:py-7 md:px-5 md:h-[95px] shadow-md' 
                 >
-                    <p>{i.domain}.base</p>
+                    <div>
+                        <p className={` ${i.controller && 'font-bold'} md:text-2xl`}>{i.domain}.base</p>
+                        {
+                            i.controller && <p className=' text-red-500 text-sm md:text-2xl`'>ID Controller</p>
+                        }
+                    </div>
                     <button className=' bg-priBlue rounded-md md:rounded-lg
                      text-white px-5 md:font-bold py-2 md:px-10 md:py-4 md:hover:bg-blue-500 '
                     >
-                        Manage
+                        Set Control
                     </button>
                 </div>
             ))
