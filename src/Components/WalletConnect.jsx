@@ -10,7 +10,6 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
   });
 
   const isWalletAvailable = (walletType) => {
-    console.log(walletType);
     if (walletType === "metaMask") {
       return typeof window.ethereum !== "undefined";
     } else if (walletType === "coinbaseWallet") {

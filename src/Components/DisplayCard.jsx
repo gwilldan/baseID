@@ -28,6 +28,8 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
   const [price, setPrice] = useState("");
   const toastRef = useRef("");
 
+  console.log("I ran");
+
   const add = () => {
     const newYear = year + 1;
     setYear(newYear);
