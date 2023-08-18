@@ -12,6 +12,9 @@
   --primary-color: 219, 230, 254;
   --accent-color: #000;
   --secondary-color: #e9effd;
+  --r-color: #;
+  --g-color: #;
+  --b-color: #;
 
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
@@ -34,8 +37,8 @@
 
     /* Hide scrollbar for IE, Edge and Firefox */
     .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
     }
   }
 }
@@ -50,10 +53,28 @@ body.light-theme {
   --primary-color: 219, 230, 254;
   --accent-color: #000;
   --secondary-color: #e9effd;
+  --r-color: #01ae9a;
+  --g-color: #06974e;
+  --b-color: #a2bc03;
 }
 
 body.dark-theme {
   --primary-color: 5, 8, 10;
   --accent-color: #fff;
-  --secondary-color: #151F25;
+  --secondary-color: #151f25;
+  --r-color: #02f9dc;
+  --g-color: #08d76f;
+  --b-color: #cbeb04;
+}
+
+.background-text {
+  background: linear-gradient(
+    269.17deg,
+    var(--r-color) 13.37%,
+    var(--g-color) 53.34%,
+    var(--b-color) 71.95%
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }

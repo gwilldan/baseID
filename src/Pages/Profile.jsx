@@ -69,8 +69,9 @@ function Profile() {
                 </p>
               )}
             </div>
+            {/* "text-bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600" */}
             {i.controller ? (
-              "User Selected Name"
+              <p className="background-text text-bold text-xl">SELECTED</p>
             ) : (
               <button
                 className=" bg-priBlue rounded-md md:rounded-lg
