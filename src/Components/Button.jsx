@@ -51,7 +51,7 @@ function Button({ setModalToggle }) {
             onClick={handleConnectButton}
           >
             <BiSolidWallet fontSize={24} />
-            {domainNames[0]?.toUpperCase() || shortenAddress(address)}
+            {domainNames?.[0]?.toUpperCase() || shortenAddress(address)}
           </button>
         )
       )}

@@ -10,6 +10,8 @@ const provider = new ethers.JsonRpcProvider(RPC);
 const contract = new ethers.Contract(CA, abi, provider);
 
 export const getUserDomainNames = async (user, options) => {
+  if (!user) return;
+
   const eventFilter = contract.filters.DomainRegistered(user, null, null);
   const logs = await contract.queryFilter(eventFilter);
 
