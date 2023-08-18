@@ -3,12 +3,12 @@ import { useContractRead } from "wagmi";
 import { abi } from "../../contract-artifacts/abi";
 import { ethers } from "ethers";
 import { useEffect } from "react";
-const ReadName = ({ args, tld, setIsNameAvail, setOwnerAddress }) => {
+const ReadName = ({ args, setIsNameAvail, setOwnerAddress }) => {
   const { data: ownerAddress } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi,
     functionName: "getDomainAddress",
-    args: [`${args}.${tld}`],
+    args: [args],
     chainId: import.meta.env.VITE_DEV_CHAIN_ID,
   });
 

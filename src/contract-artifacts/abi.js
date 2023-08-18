@@ -53,6 +53,26 @@ export const abi = [
     anonymous: false,
     inputs: [
       {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      { indexed: false, internalType: "string", name: "name", type: "string" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "timestamp",
+        type: "uint256",
+      },
+    ],
+    name: "AssociatedNameSet",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: false,
         internalType: "uint256",
         name: "_fromTokenId",
@@ -156,6 +176,13 @@ export const abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "address", name: "user", type: "address" }],
+    name: "getAssociatedName",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "string", name: "name", type: "string" }],
     name: "getDomainAddress",
     outputs: [{ internalType: "address", name: "", type: "address" }],
@@ -217,7 +244,10 @@ export const abi = [
   {
     inputs: [{ internalType: "string", name: "", type: "string" }],
     name: "records",
-    outputs: [{ internalType: "string", name: "", type: "string" }],
+    outputs: [
+      { internalType: "bool", name: "isRecordSet", type: "bool" },
+      { internalType: "string", name: "record", type: "string" },
+    ],
     stateMutability: "view",
     type: "function",
   },
@@ -262,6 +292,13 @@ export const abi = [
     type: "function",
   },
   {
+    inputs: [{ internalType: "string", name: "name", type: "string" }],
+    name: "setAssociatedName",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "string", name: "newBaseURI", type: "string" }],
     name: "setBaseURI",
     outputs: [],
@@ -300,7 +337,7 @@ export const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "id", type: "uint256" }],
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
     name: "tokenURI",
     outputs: [{ internalType: "string", name: "", type: "string" }],
     stateMutability: "view",
@@ -315,6 +352,13 @@ export const abi = [
     name: "transferFrom",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "userAssociatedName",
+    outputs: [{ internalType: "string", name: "", type: "string" }],
+    stateMutability: "view",
     type: "function",
   },
   {

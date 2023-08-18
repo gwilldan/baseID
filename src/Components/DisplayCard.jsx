@@ -137,8 +137,8 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
 
   if (isSuccess && isFetched && !isFetching && data) {
     updateMining();
-    setSearchedName("");
     setToggle(false);
+    setSearchedName("");
   }
 
   const handleError = (error) => {
