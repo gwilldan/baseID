@@ -9,10 +9,23 @@ const provider = new ethers.JsonRpcProvider(RPC);
 
 const contract = new ethers.Contract(CA, abi, provider);
 
-export const getUserSelectedName = async (user) => {
+export const getUserDomainNames = async (user, options) => {
   const eventFilter = contract.filters.DomainRegistered(user, null, null);
   const logs = await contract.queryFilter(eventFilter);
 
-  const mintedNames = logs.map((log) => log.args.domainName);
-  return mintedNames;
+  let domains = [];
+  if (options) {
+    domains = logs.map((log, i) => {
+      return {
+        id: i + 1,
+        domain: log.args.domainName,
+        // controller: options.selectedName === log.args.domainName, // CORRECT WAY IF CONTRACT MAKES PROVISIONS
+        controller: log.args.domainName === logs?.[0]?.args.domainName, // make shift to accomodate error in contract
+      };
+    });
+  } else {
+    domains = logs.map((log) => log.args.domainName);
+  }
+
+  return domains;
 };

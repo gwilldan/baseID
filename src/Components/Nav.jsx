@@ -44,7 +44,7 @@ function Nav({
       opacity: 1,
     },
   };
-  // console.log(theme);
+
   return (
     <div
       className=" bg-primary-color z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
