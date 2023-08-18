@@ -1,13 +1,17 @@
-import { useAccount } from "wagmi";
+import { useEffect, useState } from "react";
+import { useAccount, useConnect } from "wagmi";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { motion } from "framer-motion";
+
 import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
 import { animVariant } from "../utils/anim";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { parseError } from "../utils/helper";
 
 function Profile() {
   const { address, isConnected } = useAccount();
-  const [domains, setDomains] = useState([]);
+  const [domains, setDomains] = useState(null);
+  const { connect, connectors, error, isError } = useConnect();
 
   useEffect(() => {
     const getAllDomains = async () => {
@@ -19,7 +23,11 @@ function Profile() {
     getAllDomains();
   }, [address]);
 
-  console.log(domains);
+  useEffect(() => {
+    !isConnected && connect({ connector: connectors[0] });
+    console.log(error, isError);
+    isError && toast.error(parseError(error));
+  }, [connect, connectors, isConnected]);
 
   return (
     <motion.div
@@ -43,8 +51,9 @@ function Profile() {
           Domains
         </p>
       </div>
-      {domains.length > 0 &&
+      {domains !== null &&
         isConnected &&
+        domains.length > 0 &&
         domains?.map((i) => (
           <div
             key={i.id}
@@ -74,7 +83,7 @@ function Profile() {
           </div>
         ))}
       {!isConnected && <div>Connect Wallet</div>}
-      {isConnected && domains.length === 0 && (
+      {isConnected && domains !== null && domains.length === 0 && (
         <div>
           No domain name minted yet <br />
           <Link to="/">Buy domain name now</Link>

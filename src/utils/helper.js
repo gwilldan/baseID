@@ -25,3 +25,8 @@ export const parseErrorDetails = (errorMessage) => {
     wantGas,
   };
 };
+
+export const parseError = (errorMessage) => {
+  if (errorMessage?.code === -32002)
+    return "Request of type 'wallet_requestPermissions' already pending, check metamask";
+};
