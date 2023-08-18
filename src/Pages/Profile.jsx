@@ -23,7 +23,6 @@ function Profile() {
     getAllDomains();
   }, [address]);
 
-  console.log(address);
   useEffect(() => {
     !isConnected && connect({ connector: connectors[0] });
     isError && toast.error(parseError(error));
@@ -53,7 +52,7 @@ function Profile() {
       </div>
       {domains !== null &&
         isConnected &&
-        domains.length > 0 &&
+        domains?.length > 0 &&
         domains?.map((i) => (
           <div
             key={i.id}
@@ -83,7 +82,7 @@ function Profile() {
           </div>
         ))}
       {!isConnected && <div>Connect Wallet</div>}
-      {isConnected && domains !== null && domains.length === 0 && (
+      {isConnected && domains !== null && domains?.length === 0 && (
         <div>
           No domain name minted yet <br />
           <Link to="/">Buy domain name now</Link>
