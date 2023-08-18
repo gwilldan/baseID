@@ -23,11 +23,11 @@ function Profile() {
     getAllDomains();
   }, [address]);
 
+  console.log(address);
   useEffect(() => {
     !isConnected && connect({ connector: connectors[0] });
-    console.log(error, isError);
     isError && toast.error(parseError(error));
-  }, [connect, connectors, isConnected]);
+  }, []);
 
   return (
     <motion.div
