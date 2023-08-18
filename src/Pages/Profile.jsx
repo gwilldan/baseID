@@ -85,8 +85,13 @@ function Profile() {
       {!isConnected && <div>Connect Wallet</div>}
       {isConnected && domains !== null && domains.length === 0 && (
         <div>
-          No domain name minted yet <br />
-          <Link to="/">Buy domain name now</Link>
+          <p className=" md:text-xl mb-4 md:mb-8">No linked Wallet ID </p>
+          <Link to="/"
+            className=" bg-priBlue py-2 md:py-4 px-4 md:px-6 md:text-xl 
+            font-bold text-white md:hover:bg-blue-500 rounded-md "
+          >
+            Mint ID
+          </Link>
         </div>
       )}
     </motion.div>
