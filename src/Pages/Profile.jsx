@@ -3,6 +3,7 @@ import { useAccount, useConnect } from "wagmi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import {BsFillInfoSquareFill} from "react-icons/bs"
 
 import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
 import { animVariant } from "../utils/anim";
@@ -81,7 +82,11 @@ function Profile() {
             )}
           </div>
         ))}
-      {!isConnected && <div>Connect Wallet</div>}
+      {!isConnected && (<div className=" text-red-500 flex gap-2 items-center
+      font-semibold md:text-lg">
+        <BsFillInfoSquareFill className=" md:text-lg text-red-500"/>
+          Connect Wallet
+        </div>)}
       {isConnected && domains !== null && domains?.length === 0 && (
         <div>
           <p className=" md:text-xl mb-4 md:mb-8">No linked Wallet ID </p>
