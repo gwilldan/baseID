@@ -8,6 +8,7 @@ import ReadName from "./Functional/ReadName";
 import { abi } from "../contract-artifacts/abi";
 
 import {
+  useAccount,
   useContractRead,
   useContractWrite,
   usePrepareContractWrite,
@@ -26,6 +27,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
   const [isNameAvail, setIsNameAvail] = useState(false);
   const [ownerAddress, setOwnerAddress] = useState("");
   const [price, setPrice] = useState("");
+  const { isConnected } = useAccount();
   const toastRef = useRef("");
 
   const add = () => {
@@ -75,7 +77,11 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     value: ethers.parseEther(price ? price : "0"),
   });
 
-  const { data: txHash, write } = useContractWrite(config, {
+  const {
+    data: txHash,
+    write,
+    status,
+  } = useContractWrite(config, {
     onError(error) {
       const parseError = parseErrorDetails(error.message);
       if (parseError.error?.includes("insufficient funds")) {
@@ -197,6 +203,8 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
               ? "Minting ..."
               : isError
               ? handleError(error.message)
+              : !isConnected
+              ? "Connect Wallet"
               : "Register"}
           </button>
         </Fragment>

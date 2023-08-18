@@ -56,11 +56,10 @@ const config = createConfig({
 function App() {
   return (
     <>
-    <div className=" no-scrollbar">
-
-    </div>
+      <div className=" no-scrollbar"></div>
       <WagmiConfig config={config}>
-        <div className=" relative dark:bg-dark1 bg-secBlue 
+        <div
+          className=" relative dark:bg-dark1 bg-secBlue 
            bg-[url('./Assets/BACKGROUND.svg')] w-screen bg-no-repeat bg-[length:1200px_2000px] bg-center md:bg-cover
           md:bg-center no-scrollbar "
         >
@@ -68,8 +67,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route path="" element={<HomePage />} />
-                <Route path="/Profile" element={<Profile />} />
-                <Route path="/DMail" element={<DMail />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/d-mail" element={<DMail />} />
               </Route>
             </Routes>
           </BrowserRouter>

@@ -44,7 +44,7 @@ function Nav({
       opacity: 1,
     },
   };
-  // console.log(theme);
+
   return (
     <div
       className=" bg-primary-color z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
@@ -61,7 +61,7 @@ function Nav({
 
       <div className=" flex gap-4 items-center">
         <NavLink
-          to="./"
+          to="/"
           className={`${({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -71,8 +71,9 @@ function Nav({
         >
           Home
         </NavLink>
+
         <NavLink
-          to="./Profile"
+          to="/profile"
           className={`${({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -82,8 +83,9 @@ function Nav({
         >
           Profile
         </NavLink>
+
         <NavLink
-          to="./DMail"
+          to="/d-mail"
           className={`${({ isActive, isPending }) =>
             isPending
               ? "pending"
