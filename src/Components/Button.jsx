@@ -17,8 +17,6 @@ function Button({ setModalToggle }) {
     },
   });
 
-  // console.log();
-
   useEffect(() => {
     const fetchDomainNames = async () => {
       setDomainNames(await getUserSelectedName(address));
