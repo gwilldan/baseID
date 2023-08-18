@@ -23,11 +23,11 @@ const MobileNav = ({ setOpen, modalToggle, setModalToggle }) => {
       <NavLink
         onClick={() => setOpen(false)}
         className={`dark:text-white`}
-        to="./DMail"
+        to = "/d-mail"
       >
         D-Mail      
       </NavLink>
-      <Button modalToggle={modalToggle} setModalToggle={setModalToggle} />
+      <Button className="overflow-auto max-w-[195px]" modalToggle={modalToggle} setModalToggle={setModalToggle} />
     </div>
   );
 };
