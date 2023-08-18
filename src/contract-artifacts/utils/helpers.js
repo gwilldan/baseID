@@ -21,8 +21,7 @@ export const getUserDomainNames = async (user, options) => {
       return {
         id: i + 1,
         domain: log.args.domainName,
-        // controller: options.selectedName === log.args.domainName, // CORRECT WAY IF CONTRACT MAKES PROVISIONS
-        controller: log.args.domainName === logs?.[0]?.args.domainName, // make shift to accomodate error in contract
+        controller: options.selectedName === log.args.domainName, // CORRECT WAY IF CONTRACT MAKES PROVISIONS
       };
     });
   } else {

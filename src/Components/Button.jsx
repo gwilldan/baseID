@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
-import { useAccount, useDisconnect } from "wagmi";
+import { useAccount, useContractRead, useDisconnect } from "wagmi";
 import { BiSolidWallet } from "react-icons/bi";
 
 import { shortenAddress } from "../utils/helper";
-import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
+import { abi } from "../contract-artifacts/abi";
+
 import { useEffect, useState } from "react";
 
 function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
-  const [domainNames, setDomainNames] = useState("");
+  // const [domainNames, setDomainNames] = useState("");
 
   const { disconnect } = useDisconnect({
     onError(error) {
@@ -16,12 +17,13 @@ function Button({ setModalToggle }) {
     },
   });
 
-  useEffect(() => {
-    const fetchDomainNames = async () => {
-      setDomainNames(await getUserDomainNames(address));
-    };
-    address && fetchDomainNames();
-  }, [address]);
+  const { data: domainName } = useContractRead({
+    address: import.meta.env.VITE_CA,
+    abi,
+    functionName: "getAssociatedName",
+    args: [address],
+    chainId: import.meta.env.VITE_DEV_CHAIN_ID,
+  });
 
   const handleConnectButton = () => {
     if (isConnected) {
@@ -51,7 +53,7 @@ function Button({ setModalToggle }) {
             onClick={handleConnectButton}
           >
             <BiSolidWallet fontSize={24} />
-            {domainNames?.[0]?.toUpperCase() || shortenAddress(address)}
+            {domainName?.toUpperCase() || shortenAddress(address)}
           </button>
         )
       )}
