@@ -34,8 +34,8 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="  grid md:grid-cols-2 place-self-center 
-            h-[570px] w-[350px] md:h-[340px] md:w-[600px] border-none
+        className="  flex flex-wrap place-self-center 
+            min-h-[400px] min-w-[320px] md:h-[340px] md:w-[600px] border-none
             bg-white justify-center"
       >
         {connectors.map((connector, i) => {
@@ -43,7 +43,7 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
             return (
               <button
                 key={i}
-                className=" hover:bg-slate-100 flex gap-1 flex-col 
+                className=" hover:bg-slate-100 w-full flex gap-1 flex-col 
                           justify-center items-center"
                 onClick={() => {
                   connect({ connector });

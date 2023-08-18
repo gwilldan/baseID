@@ -16,9 +16,17 @@ const MobileNav = ({ setOpen, modalToggle, setModalToggle }) => {
       <NavLink
         onClick={() => setOpen(false)}
         className={`dark:text-white`}
+        to="./Profile"
+      >
+        Profile      
+      </NavLink>
+      <NavLink
+        onClick={() => setOpen(false)}
+        className={`dark:text-white`}
         to="./DMail"
       >
-D-Mail      </NavLink>
+        D-Mail      
+      </NavLink>
       <Button modalToggle={modalToggle} setModalToggle={setModalToggle} />
     </div>
   );

@@ -49,7 +49,7 @@ function Nav({
     <div
       className=" bg-primary-color z-50 sticky w-full top-0 py-6 h-[70px] md:h-[100px] border-b border-priBlue 
       flex justify-between md:pt-[40px] px-small md:px-[40px] 
-      lg:px-Large pb-small "
+      xl:px-Large pb-small "
     >
       <div className=" flex items-center">
         <img
@@ -70,6 +70,17 @@ function Nav({
               : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
         >
           Home
+        </NavLink>
+        <NavLink
+          to="./Profile"
+          className={`${({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "active"
+              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
+        >
+          Profile
         </NavLink>
         <NavLink
           to="./DMail"

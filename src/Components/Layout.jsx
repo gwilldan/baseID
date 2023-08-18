@@ -24,7 +24,7 @@ const Layout = () => {
         isOpen={isOpen}
         setOpen={setOpen}
       />
-      <main className="no-scrollbars w-full h-full flex flex-col md:h-full">
+      <main className="no-scrollbar overflow-auto w-full h-full flex flex-col md:h-full">
         {<Outlet />}
       </main>
       <WalletConnect
