@@ -77,11 +77,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     value: ethers.parseEther(price ? price : "0"),
   });
 
-  const {
-    data: txHash,
-    write,
-    status,
-  } = useContractWrite(config, {
+  const { data: txHash, write } = useContractWrite(config, {
     onError(error) {
       const parseError = parseErrorDetails(error.message);
       if (parseError.error?.includes("insufficient funds")) {
@@ -94,10 +90,16 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     },
   });
 
-  const { data, isSuccess, isLoading, isFetching, isFetched } =
-    useWaitForTransaction({
-      hash: txHash?.hash,
-    });
+  const {
+    data,
+    isSuccess,
+    isLoading,
+    isFetching,
+    isFetched,
+    isError: txIsError,
+  } = useWaitForTransaction({
+    hash: txHash?.hash,
+  });
 
   const displayMiningTx = () => {
     toastRef.current = toast.loading(
@@ -109,11 +111,13 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     );
   };
 
-  const updateMining = () => {
+  const updateMining = (isError) => {
     toast.update(toastRef.current, {
       render: (
         <p>
-          {searchedName} has being minted.
+          {isError
+            ? `Error minting ${searchedName}, name may already exists`
+            : `${searchedName} has been minted successfully`}
           <br />
           <a
             style={{ textDecoration: "underline" }}
@@ -121,11 +125,11 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
             target="_blank"
             rel="noreferrer"
           >
-            view on basescan
+            view transaction details on basescan
           </a>
         </p>
       ),
-      type: "success",
+      type: isError ? "error" : "success",
       isLoading: false,
       autoClose: "5000",
     });
@@ -136,9 +140,11 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
   }
 
   if (isSuccess && isFetched && !isFetching && data) {
-    updateMining();
+    updateMining(txIsError);
     setToggle(false);
     setSearchedName("");
+  } else if (isError) {
+    updateMining(txIsError);
   }
 
   const handleError = (error) => {

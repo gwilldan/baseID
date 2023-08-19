@@ -5,8 +5,6 @@ import { BiSolidWallet } from "react-icons/bi";
 import { shortenAddress } from "../utils/helper";
 import { abi } from "../contract-artifacts/abi";
 
-import { useEffect, useState } from "react";
-
 function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
   // const [domainNames, setDomainNames] = useState("");
