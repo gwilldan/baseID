@@ -35,6 +35,8 @@ function Button({ setModalToggle }) {
   const butStyles =
     "  hover:bg-blue-500 active:bg-priBlue bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
 
+  console.log(chain.network);
+  console.log(network);
   return (
     <div>
       {!isConnected ? (
@@ -57,7 +59,7 @@ function Button({ setModalToggle }) {
             {`${
               domainName !== undefined
                 ? domainName?.toUpperCase() + ".SMT"
-                : chain.network === network
+                : chain.network !== network
                 ? "Wrong Network"
                 : shortenAddress(address)
             }` || shortenAddress(address)}
