@@ -16,6 +16,8 @@ function Profile() {
   const { connect, connectors, error, isError } = useConnect();
   const { chain } = useNetwork();
 
+  console.log(isConnected);
+
   const { data: domainName } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi,
@@ -31,17 +33,13 @@ function Profile() {
           chainId: chain.id,
           network: chain.network,
         });
-        console.log(domains);
-
         setDomains(domains);
       } catch (err) {
-        err.response.status === 404 && setDomains([]);
+        err?.response?.status === 404 && setDomains([]);
       }
     };
     getAllDomains();
   }, [address, chain]);
-
-  //   console.log(domains);
 
   useEffect(() => {
     !isConnected && connect({ connector: connectors[0] });

@@ -49,13 +49,13 @@ function Button({ setModalToggle }) {
         isConnected && (
           <button
             className={`${butStyles}  px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center ${
-              domainName === undefined && "bg-[#e11e09] hover:bg-[#f00606]"
+              chain.network !== network && "bg-[#e11e09] hover:bg-[#f00606]"
             }`}
             onClick={handleConnectButton}
           >
             <BiSolidWallet fontSize={24} />
             {`${
-              domainName !== undefined
+              domainName !== undefined && domainName.length > 0
                 ? domainName?.toUpperCase() + ".SMT"
                 : chain.network !== network
                 ? "Wrong Network"
