@@ -73,7 +73,7 @@ function Profile() {
         domains?.length > 0 &&
         domains?.map((i) => (
           <div
-            key={i.id}
+            key={i._id}
             className=" flex items-center justify-between mb-4 md:mb-8 
                     bg-secondary-color p-5 md:py-7 md:px-5 md:h-[95px] shadow-md"
           >
