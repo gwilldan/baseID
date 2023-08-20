@@ -8,7 +8,7 @@ import { BsFillInfoSquareFill } from "react-icons/bs";
 import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
 import { abi } from "../contract-artifacts/abi";
 import { animVariant } from "../utils/anim";
-import { parseError } from "../utils/helper";
+import { parseError } from "../utils/helperFunctions";
 
 function Profile() {
   const { address, isConnected } = useAccount();
@@ -21,17 +21,20 @@ function Profile() {
     abi,
     functionName: "getAssociatedName",
     args: [address],
-    chainId: chain.id,
   });
 
   useEffect(() => {
     const getAllDomains = async () => {
-      const domains = await getUserDomainNames(address, {
-        selectedName: domainName,
-        chainId: chain.id,
-        network: chain.network,
-      });
-      setDomains(domains);
+      try {
+        const domains = await getUserDomainNames(address, {
+          selectedName: domainName,
+          chainId: chain.id,
+          network: chain.network,
+        });
+        setDomains(domains);
+      } catch (err) {
+        toast.error(err?.message);
+      }
     };
     getAllDomains();
   }, [address]);
@@ -40,6 +43,8 @@ function Profile() {
     !isConnected && connect({ connector: connectors[0] });
     isError && toast.error(parseError(error));
   }, []);
+
+  console.log(domainName);
 
   return (
     <motion.div
@@ -73,17 +78,20 @@ function Profile() {
                     bg-secondary-color p-5 md:py-7 md:px-5 md:h-[95px] shadow-md"
           >
             <div>
-              <p className={` ${i.controller && "font-bold"} md:text-2xl`}>
-                {i.domain}
+              <p
+                className={` ${
+                  i.domainName === `${domainName}.smt` && "font-bold"
+                } md:text-2xl`}
+              >
+                {i.domainName}
               </p>
-              {i.controller && (
+              {/* {i.domainName && (
                 <p className=" text-red-500 text-sm md:text-2xl`">
                   ID Controller
                 </p>
-              )}
+              )} */}
             </div>
-            {/* "text-bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600" */}
-            {i.controller ? (
+            {i.domainName === `${domainName}.smt` ? (
               <p className="background-text text-bold text-xl">SELECTED</p>
             ) : (
               <button
