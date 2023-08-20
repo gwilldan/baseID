@@ -1,28 +1,37 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useSwitchNetwork, useAccount, useNetwork } from "wagmi";
-import useCurrentNetwork from "../Hooks/useCurrentNetwork";
+import { toast } from "react-toastify";
 
 import Nav from "./Nav";
 import Footer from "./Footer";
 import WalletConnect from "./WalletConnect";
 
 const Layout = () => {
-  const { chains, switchNetwork } = useSwitchNetwork();
-  const { address } = useAccount();
-  const { network } = useCurrentNetwork();
-  const { chain } = useNetwork();
-
   // STATE FOR MODAL CHANG
   const [modalToggle, setModalToggle] = useState(false);
   const [theme, setTheme] = useState("light");
 
+  // useEffect(() => {
+  //   const handleOnline = () => {
+  //     console.log("i ran online");
+  //     toast.info("You are online");
+  //   };
+  //   const handleOffline = () => {
+  //     console.log("I ran offline");
+  //     toast.info("You are offline, reconnect and try again...");
+  //   };
+
+  //   window.addEventListener("online", handleOnline);
+  //   window.addEventListener("offline", handleOffline);
+
+  //   return () => {
+  //     window.removeEventListener(handleOnline);
+  //     window.removeEventListener(handleOffline);
+  //   };
+  // }, []);
+
   // STATE OF HAMBURGER TOGGLE
   const [isOpen, setOpen] = useState(false);
-
-  useEffect(() => {
-    switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
-  }, [address, chains, chain, network, switchNetwork]);
 
   return (
     <div className=" w-full flex flex-col  h-screen md-h-auto">
@@ -48,3 +57,7 @@ const Layout = () => {
 };
 
 export default Layout;
+
+// useEffect(() => {
+//   switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
+// }, [address, chains, chain, network, switchNetwork]);

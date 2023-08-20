@@ -57,7 +57,7 @@ function Button({ setModalToggle }) {
             {`${
               domainName !== undefined
                 ? domainName?.toUpperCase() + ".SMT"
-                : chain.network === network
+                : chain.network !== network
                 ? "Wrong Network"
                 : shortenAddress(address)
             }` || shortenAddress(address)}
