@@ -14,7 +14,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import { extractErrorDetails, shortenAddress } from "../utils/helper";
+import { extractErrorDetails, shortenAddress } from "../utils/helperFunctions";
 import { ethers } from "ethers";
 
 function DisplayCard({ searchedName, setSearchedName, setToggle }) {
