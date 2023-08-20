@@ -31,20 +31,22 @@ function Profile() {
           chainId: chain.id,
           network: chain.network,
         });
+        console.log(domains);
+
         setDomains(domains);
       } catch (err) {
-        toast.error(err?.message);
+        err.response.status === 404 && setDomains([]);
       }
     };
     getAllDomains();
-  }, [address]);
+  }, [address, chain]);
+
+  //   console.log(domains);
 
   useEffect(() => {
     !isConnected && connect({ connector: connectors[0] });
     isError && toast.error(parseError(error));
   }, []);
-
-  console.log(domainName);
 
   return (
     <motion.div
@@ -73,7 +75,7 @@ function Profile() {
         domains?.length > 0 &&
         domains?.map((i) => (
           <div
-            key={i.id}
+            key={i._id}
             className=" flex items-center justify-between mb-4 md:mb-8 
                     bg-secondary-color p-5 md:py-7 md:px-5 md:h-[95px] shadow-md"
           >
@@ -85,11 +87,6 @@ function Profile() {
               >
                 {i.domainName}
               </p>
-              {/* {i.domainName && (
-                <p className=" text-red-500 text-sm md:text-2xl`">
-                  ID Controller
-                </p>
-              )} */}
             </div>
             {i.domainName === `${domainName}.smt` ? (
               <p className="background-text text-bold text-xl">SELECTED</p>

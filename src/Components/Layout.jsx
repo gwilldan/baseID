@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { useSwitchNetwork, useAccount, useNetwork } from "wagmi";
+import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 
 import Nav from "./Nav";
 import Footer from "./Footer";
 import WalletConnect from "./WalletConnect";
 
 const Layout = () => {
-  const [theme, setTheme] = useState("light");
+  const { chains, switchNetwork } = useSwitchNetwork();
+  const { address } = useAccount();
+  const { network } = useCurrentNetwork();
+  const { chain } = useNetwork();
 
   // STATE FOR MODAL CHANG
   const [modalToggle, setModalToggle] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   // STATE OF HAMBURGER TOGGLE
   const [isOpen, setOpen] = useState(false);
+
+  useEffect(() => {
+    switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
+  }, [address, chains, chain, network, switchNetwork]);
 
   return (
     <div className=" w-full flex flex-col  h-screen md-h-auto">

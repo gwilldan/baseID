@@ -1,26 +1,15 @@
-import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Logo, LogoDark } from "../Assets";
 import { Button, MobileNav } from "../Components";
 
 import { useDarkMode } from "../Hooks/useTheme";
 import { FiMoon, FiSun } from "react-icons/fi";
-import { useAccount, useSwitchNetwork } from "wagmi";
 import { Squash } from "hamburger-react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 
 function Nav({ modalToggle, setModalToggle, setOpen, isOpen }) {
-  const { chains, switchNetwork } = useSwitchNetwork();
-  const { address } = useAccount();
-  const { network } = useCurrentNetwork();
-
   const { theme, themeToggler } = useDarkMode();
-
-  useEffect(() => {
-    switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
-  }, [address, chains, switchNetwork]);
 
   const toggling = () => {
     setOpen(!isOpen);
