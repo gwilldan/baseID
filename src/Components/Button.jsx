@@ -35,8 +35,6 @@ function Button({ setModalToggle }) {
   const butStyles =
     "  hover:bg-blue-500 active:bg-priBlue bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
 
-  console.log(chain.network);
-  console.log(network);
   return (
     <div>
       {!isConnected ? (
