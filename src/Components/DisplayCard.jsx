@@ -16,7 +16,6 @@ import {
 } from "wagmi";
 import {
   extractErrorDetails,
-  parseError,
   parseErrorDetails,
   shortenAddress,
 } from "../utils/helper";
