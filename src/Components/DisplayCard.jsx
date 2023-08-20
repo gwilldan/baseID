@@ -14,11 +14,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import {
-  extractErrorDetails,
-  parseErrorDetails,
-  shortenAddress,
-} from "../utils/helper";
+import { extractErrorDetails, shortenAddress } from "../utils/helper";
 import { ethers } from "ethers";
 
 function DisplayCard({ searchedName, setSearchedName, setToggle }) {
@@ -89,8 +85,8 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     error: mintingError,
   } = useContractWrite(config, {
     onError(error) {
-      const parseError = parseErrorDetails(error.message);
-      if (parseError.error?.includes("insufficient funds")) {
+      const parseError = extractErrorDetails(error.message);
+      if (parseError?.includes("insufficient funds")) {
         toast.error(
           `insufficient funds, user have ${
             parseError.haveGas

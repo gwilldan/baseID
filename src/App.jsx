@@ -23,7 +23,6 @@ const { chains, publicClient } = configureChains(
   [
     jsonRpcProvider({
       rpc: (chain) => {
-        console.log(chain);
         ({
           http: `https://rpc.ankr.com/${chain.name.toLowerCase()}/${
             import.meta.env.VITE_ANKR_KEY

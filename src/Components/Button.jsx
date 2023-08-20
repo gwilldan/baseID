@@ -20,7 +20,6 @@ function Button({ setModalToggle }) {
     abi,
     functionName: "getAssociatedName",
     args: [address],
-    chainId: import.meta.env.VITE_DEV_CHAIN_ID,
   });
 
   const handleConnectButton = () => {

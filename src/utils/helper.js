@@ -25,7 +25,6 @@ export const extractErrorDetails = (errorMessage) => {
 };
 
 export const parseError = (errorMessage) => {
-  console.log(errorMessage.code);
   if (errorMessage?.code === -32002)
     return "Request of type 'wallet_requestPermissions' already pending, check metamask";
   else if (errorMessage?.code === 40001) return "User rejected the request";
