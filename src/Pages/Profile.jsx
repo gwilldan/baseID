@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useAccount, useConnect } from "wagmi";
+import { useAccount, useConnect, useContractRead, useNetwork } from "wagmi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import {BsFillInfoSquareFill} from "react-icons/bs"
+import { BsFillInfoSquareFill } from "react-icons/bs";
 
 import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
+import { abi } from "../contract-artifacts/abi";
 import { animVariant } from "../utils/anim";
 import { parseError } from "../utils/helper";
 
@@ -13,11 +14,22 @@ function Profile() {
   const { address, isConnected } = useAccount();
   const [domains, setDomains] = useState(null);
   const { connect, connectors, error, isError } = useConnect();
+  const { chain } = useNetwork();
+
+  const { data: domainName } = useContractRead({
+    address: import.meta.env.VITE_CA,
+    abi,
+    functionName: "getAssociatedName",
+    args: [address],
+    chainId: chain.id,
+  });
 
   useEffect(() => {
     const getAllDomains = async () => {
       const domains = await getUserDomainNames(address, {
-        selectedName: "Prince",
+        selectedName: domainName,
+        chainId: chain.id,
+        network: chain.network,
       });
       setDomains(domains);
     };
@@ -83,15 +95,20 @@ function Profile() {
             )}
           </div>
         ))}
-      {!isConnected && (<div className=" text-red-500 flex gap-2 items-center
-      font-semibold md:text-lg">
-        <BsFillInfoSquareFill className=" md:text-lg text-red-500"/>
+      {!isConnected && (
+        <div
+          className=" text-red-500 flex gap-2 items-center
+      font-semibold md:text-lg"
+        >
+          <BsFillInfoSquareFill className=" md:text-lg text-red-500" />
           Connect Wallet
-        </div>)}
+        </div>
+      )}
       {isConnected && domains !== null && domains?.length === 0 && (
         <div>
           <p className=" md:text-xl mb-4 md:mb-8">No linked Wallet ID </p>
-          <Link to="/"
+          <Link
+            to="/"
             className=" bg-priBlue py-2 md:py-4 px-4 md:px-6 md:text-xl 
             font-bold text-white md:hover:bg-blue-500 rounded-md "
           >

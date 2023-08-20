@@ -11,7 +11,7 @@ const ReadPrice = ({ args, setPrice }) => {
     abi: abi,
     functionName: "price",
     args: [args],
-    chainId: import.meta.env.VITE_DEV_CHAIN_ID,
+    // chainId: import.meta.env.VITE_DEV_CHAIN_ID,
   });
 
   const price =

@@ -5,28 +5,27 @@ export const shortenAddress = (_add, startLength, endLength) => {
   } else return _add?.slice(0, 6) + " ... " + _add?.slice(38, 42);
 };
 
-export const parseErrorDetails = (errorMessage) => {
-  const detailsMatch =
-    /err: insufficient funds for gas \* price \+ value: address 0x[0-9a-fA-F]+ have (\d+) want (\d+) \(supplied gas \d+\)/.exec(
-      errorMessage
-    );
+export const extractErrorDetails = (errorMessage) => {
+  const message =
+    typeof errorMessage === "object" ? errorMessage.message : errorMessage;
 
-  if (!detailsMatch) {
-    return null; // Unable to parse the error details
+  const detailsIndex = message.indexOf("Details:");
+  if (detailsIndex !== -1) {
+    const detailsStart = detailsIndex + "Details:".length;
+    const firstFullStop = message.indexOf(".", detailsStart);
+    if (firstFullStop !== -1) {
+      const extractedDetails = message?.substring(
+        detailsStart,
+        firstFullStop + 1
+      );
+      return extractedDetails?.trim();
+    }
   }
-
-  const error = detailsMatch[0];
-  const haveGas = detailsMatch[1];
-  const wantGas = detailsMatch[2];
-
-  return {
-    error,
-    haveGas,
-    wantGas,
-  };
+  return "";
 };
 
 export const parseError = (errorMessage) => {
   if (errorMessage?.code === -32002)
     return "Request of type 'wallet_requestPermissions' already pending, check metamask";
+  else if (errorMessage?.code === 40001) return "User rejected the request";
 };

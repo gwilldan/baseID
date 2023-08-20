@@ -9,22 +9,17 @@ import { useAccount, useSwitchNetwork } from "wagmi";
 import { Squash } from "hamburger-react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
+import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 
-function Nav({
-  // theme,
-  // setTheme,
-  modalToggle,
-  setModalToggle,
-  setOpen,
-  isOpen,
-}) {
+function Nav({ modalToggle, setModalToggle, setOpen, isOpen }) {
   const { chains, switchNetwork } = useSwitchNetwork();
   const { address } = useAccount();
+  const { network } = useCurrentNetwork();
 
   const { theme, themeToggler } = useDarkMode();
 
   useEffect(() => {
-    switchNetwork?.(chains[0].id);
+    switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
   }, [address, chains, switchNetwork]);
 
   const toggling = () => {
