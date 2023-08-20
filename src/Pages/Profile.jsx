@@ -21,7 +21,6 @@ function Profile() {
     abi,
     functionName: "getAssociatedName",
     args: [address],
-    chainId: chain.id,
   });
 
   useEffect(() => {

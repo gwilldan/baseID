@@ -7,7 +7,6 @@ import { abi } from "../contract-artifacts/abi";
 
 function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
-  // const [domainNames, setDomainNames] = useState("");
 
   const { disconnect } = useDisconnect({
     onError(error) {
@@ -50,7 +49,7 @@ function Button({ setModalToggle }) {
             onClick={handleConnectButton}
           >
             <BiSolidWallet fontSize={24} />
-            {domainName?.toUpperCase() || shortenAddress(address)}
+            {`${domainName?.toUpperCase()}.SMT` || shortenAddress(address)}
           </button>
         )
       )}
