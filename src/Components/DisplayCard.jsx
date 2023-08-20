@@ -14,7 +14,12 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import { parseErrorDetails, shortenAddress } from "../utils/helper";
+import {
+  extractErrorDetails,
+  parseError,
+  parseErrorDetails,
+  shortenAddress,
+} from "../utils/helper";
 import { ethers } from "ethers";
 
 function DisplayCard({ searchedName, setSearchedName, setToggle }) {
@@ -77,7 +82,13 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     value: ethers.parseEther(price ? price : "0"),
   });
 
-  const { data: txHash, write } = useContractWrite(config, {
+  const {
+    data: txHash,
+    write,
+    isLoading: mintIsLoading,
+    isError: isMintingError,
+    error: mintingError,
+  } = useContractWrite(config, {
     onError(error) {
       const parseError = parseErrorDetails(error.message);
       if (parseError.error?.includes("insufficient funds")) {
@@ -121,7 +132,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
           <br />
           <a
             style={{ textDecoration: "underline" }}
-            href={`${import.meta.env.VITE_DEV_SCAN}/${data.transactionHash}`}
+            href={`${import.meta.env.VITE_DEV_SCAN}/${data?.transactionHash}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -147,10 +158,13 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
     updateMining(txIsError);
   }
 
+  if (isMintingError) {
+    toast.error(extractErrorDetails(mintingError));
+  }
+
   const handleError = (error) => {
-    const parsedError = parseErrorDetails(error);
-    if (parsedError?.error?.includes("insufficient funds"))
-      return "Insufficient ETH";
+    const parsedError = extractErrorDetails(error);
+    if (parsedError?.includes("insufficient funds")) return "Insufficient ETH";
     else return "Register";
   };
 
@@ -199,7 +213,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
           <ReadPrice args={searchedName} setPrice={setPrice} />
 
           <button
-            disabled={isNameAvail || !write}
+            disabled={isNameAvail || mintIsLoading || !write}
             className={` ${
               isNameAvail || "hover:bg-blue-500 active:bg-priBlue"
             }  md:w-[200px] rounded-2xl font-semibold h-12 bg-priBlue text-white disabled:opacity-50 `}

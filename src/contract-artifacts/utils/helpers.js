@@ -2,18 +2,40 @@ import { ethers } from "ethers";
 import { abi } from "../abi";
 
 const CA = import.meta.env.VITE_CA;
-const RPC = import.meta.env.VITE_ALCHEMY_RPC;
+const ALCHEMYRPC = import.meta.env.VITE_ALCHEMY_RPC;
+const ANKRPC = import.meta.env.VITE_ANKR_RPC;
+const ANKRPC_GOERLI = import.meta.env.VITE_ANKR_RPC_GOERLI;
+const FROM_BLOCK = 4070430;
 
-// Create provider
-const provider = new ethers.JsonRpcProvider(RPC);
+const chains = {
+  sepolia: {
+    rpc: ALCHEMYRPC,
+  },
+  base: {
+    rpc: ANKRPC,
+  },
+  "base-goerli": {
+    rpc: ANKRPC_GOERLI,
+  },
+};
 
-const contract = new ethers.Contract(CA, abi, provider);
+//https://rpc.ankr.com/base_goerli/e28d7c9203a3e9dc17405468cc7cc4386f86a5d811329c307b80168e23421028
+//https://rpc.ankr.com/base_goerli/e28d7c9203a3e9dc17405468cc7cc4386f86a5d811329c307b80168e23421028
 
 export const getUserDomainNames = async (user, options) => {
   if (!user) return;
 
+  const rpc = chains[options.network].rpc;
+  console.log(rpc);
+  console.log(ANKRPC_GOERLI);
+
+  // Create provider
+  const provider = new ethers.JsonRpcProvider(rpc);
+  console.log(provider);
+  const contract = new ethers.Contract(CA, abi, provider);
+
   const eventFilter = contract.filters.DomainRegistered(user, null, null);
-  const logs = await contract.queryFilter(eventFilter);
+  const logs = await contract.queryFilter(eventFilter, FROM_BLOCK);
 
   let domains = [];
   if (options) {
