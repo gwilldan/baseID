@@ -22,18 +22,16 @@ const { chains, publicClient } = configureChains(
   [base, baseGoerli, sepolia, mainnet],
   [
     jsonRpcProvider({
-      rpc: (chain) => {
-        ({
-          http: `https://rpc.ankr.com/${chain.name.toLowerCase()}/${
-            import.meta.env.VITE_ANKR_KEY
-          }`,
-        });
-      },
-      stallTimeout: 1000,
+      rpc: (chain) => ({
+        http: `https://rpc.ankr.com/${chain.name.toLowerCase()}/${
+          import.meta.env.VITE_ANKR_KEY
+        }`,
+      }),
+      // stallTimeout: 1000,
     }),
     alchemyProvider({
       apiKey: import.meta.env.VITE_ALCHEMY_KEY,
-      stallTimeout: 1000,
+      // stallTimeout: 1000,
     }),
     publicProvider(),
   ]
