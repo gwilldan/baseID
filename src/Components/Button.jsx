@@ -1,12 +1,15 @@
 import PropTypes from "prop-types";
-import { useAccount, useContractRead, useDisconnect } from "wagmi";
+import { useAccount, useContractRead, useDisconnect, useNetwork } from "wagmi";
 import { BiSolidWallet } from "react-icons/bi";
 
 import { shortenAddress } from "../utils/helperFunctions";
 import { abi } from "../contract-artifacts/abi";
+import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 
 function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
+  const { network } = useCurrentNetwork();
+  const { chain } = useNetwork();
 
   const { disconnect } = useDisconnect({
     onError(error) {
@@ -54,7 +57,9 @@ function Button({ setModalToggle }) {
             {`${
               domainName !== undefined
                 ? domainName?.toUpperCase() + ".SMT"
-                : "Wrong Network"
+                : chain.network === network
+                ? "Wrong Network"
+                : shortenAddress(address)
             }` || shortenAddress(address)}
           </button>
         )
