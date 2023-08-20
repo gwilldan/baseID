@@ -5,7 +5,6 @@ const BACKENDURL =
 
 export const getUserDomainNames = async (user, options) => {
   let domains;
-  console.log(typeof options?.chainId);
   if (options) {
     domains = await axios.get(`${BACKENDURL}/${user}/${options.chainId}`);
   }

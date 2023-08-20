@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useSwitchNetwork, useAccount } from "wagmi";
+import { useSwitchNetwork, useAccount, useNetwork } from "wagmi";
 import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 
 import Nav from "./Nav";
@@ -11,6 +11,7 @@ const Layout = () => {
   const { chains, switchNetwork } = useSwitchNetwork();
   const { address } = useAccount();
   const { network } = useCurrentNetwork();
+  const { chain } = useNetwork();
 
   // STATE FOR MODAL CHANG
   const [modalToggle, setModalToggle] = useState(false);
@@ -21,7 +22,7 @@ const Layout = () => {
 
   useEffect(() => {
     switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
-  }, [address, chains, switchNetwork]);
+  }, [address, chains, chain, network, switchNetwork]);
 
   return (
     <div className=" w-full flex flex-col  h-screen md-h-auto">
