@@ -3,7 +3,7 @@ import { useContractRead } from "wagmi";
 import { abi } from "../../contract-artifacts/abi";
 import { ethers } from "ethers";
 import { useEffect } from "react";
-const ReadName = ({ args, setIsNameAvail, setOwnerAddress }) => {
+const ReadName = ({ args, setIsNameAvail, setOwnerAddress, tld }) => {
   const { data: ownerAddress } = useContractRead({
     address: import.meta.env.VITE_CA,
     abi,
@@ -21,7 +21,9 @@ const ReadName = ({ args, setIsNameAvail, setOwnerAddress }) => {
 
   return (
     <div className="border-b border-[#17338F] py-4 md:border-none">
-      <p className=" dark:text-white text-lg font-bold">{args}.base</p>
+      <p className=" dark:text-white text-lg font-bold">
+        {args}.{tld || "base"}
+      </p>
       {isNotZeroAddress && <p className="text-red-600">Unavailable</p>}
       {!isNotZeroAddress && args.length >= 3 && (
         <p className=" text-green-600">Available</p>

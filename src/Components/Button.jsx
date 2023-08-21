@@ -56,7 +56,7 @@ function Button({ setModalToggle }) {
             <BiSolidWallet fontSize={24} />
             {`${
               domainName !== undefined && domainName.length > 0
-                ? domainName?.toUpperCase() + ".SMT"
+                ? domainName?.toUpperCase()
                 : chain.network !== network
                 ? "Wrong Network"
                 : shortenAddress(address)
