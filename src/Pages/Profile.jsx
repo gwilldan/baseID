@@ -27,6 +27,8 @@ function Profile() {
     args: [address],
   });
 
+  console.log(domainName);
+
   useEffect(() => {
     const getAllDomains = async () => {
       try {
@@ -86,13 +88,13 @@ function Profile() {
             <div>
               <p
                 className={` ${
-                  i.domainName === `${domainName}.smt` && "font-bold"
+                  i.domainName === `${domainName}` && "font-bold"
                 } md:text-2xl`}
               >
                 {i.domainName}
               </p>
             </div>
-            {i.domainName === `${domainName}.smt` ? (
+            {i.domainName === `${domainName}` ? (
               <p className="background-text text-bold text-xl">SELECTED</p>
             ) : (
               <ThreeDots domainName={i.domainName} setOpen={setOpen}  />

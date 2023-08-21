@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { animVariant, childVariant } from "../utils/anim";
 
 import { InputField, DisplayCard } from "../Components";
+import { useContractRead } from "wagmi";
+import { abi } from "../contract-artifacts/abi";
 
 function HomePage() {
   const [toggle, setToggle] = useState(false);
@@ -16,6 +18,12 @@ function HomePage() {
     }
     setToggle(!toggle);
   };
+
+  const { data: tld } = useContractRead({
+    address: import.meta.env.VITE_CA,
+    abi: abi,
+    functionName: "tld",
+  });
 
   const handleNameChange = (e) => {
     const newValue = e.target.value.replace(/\s/g, "");
@@ -47,7 +55,7 @@ function HomePage() {
           value={searchedName}
           endAdornment={
             <>
-              <p className="text-black md:mr-4 md:text-xl">.base</p>
+              <p className="text-black md:mr-4 md:text-xl">.{tld || "base"}</p>
               <button
                 onClick={search}
                 className="hover:scale-[1.2] text-priBlue active:text-red-500 active:scale-[1px] hover:text-priBlack hover:duration-75 hover:ease flex justify-center items-center"
@@ -65,6 +73,7 @@ function HomePage() {
           setToggle={setToggle}
           searchedName={searchedName}
           setSearchedName={setSearchedName}
+          tld={tld}
         />
       )}
     </motion.div>
