@@ -9,6 +9,8 @@ import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
 import { abi } from "../contract-artifacts/abi";
 import { animVariant } from "../utils/anim";
 import { parseError } from "../utils/helperFunctions";
+import { ThreeDots } from "../Components";
+import { id } from "ethers";
 
 function Profile() {
   const { address, isConnected } = useAccount();
@@ -16,7 +18,7 @@ function Profile() {
   const { connect, connectors, error, isError } = useConnect();
   const { chain } = useNetwork();
 
-  console.log(isConnected);
+  // console.log(isConnected);
 
   const { data: domainName } = useContractRead({
     address: import.meta.env.VITE_CA,
@@ -46,6 +48,8 @@ function Profile() {
     isError && toast.error(parseError(error));
   }, []);
 
+  const [isOpen, setOpen] = useState(false);
+
   return (
     <motion.div
       variants={animVariant}
@@ -72,10 +76,12 @@ function Profile() {
         isConnected &&
         domains?.length > 0 &&
         domains?.map((i) => (
-          <div
+          <motion.div
+            layout
+            style={{  height: isOpen ? "200px" : "95px"}}
             key={i._id}
             className=" flex items-center justify-between mb-4 md:mb-8 
-                    bg-secondary-color p-5 md:py-7 md:px-5 md:h-[95px] shadow-md"
+                    bg-secondary-color p-5 md:py-7 md:px-5 md:h-[95px] shadow-md "
           >
             <div>
               <p
@@ -89,14 +95,9 @@ function Profile() {
             {i.domainName === `${domainName}.smt` ? (
               <p className="background-text text-bold text-xl">SELECTED</p>
             ) : (
-              <button
-                className=" bg-priBlue rounded-md md:rounded-lg
-                     text-white px-5 md:font-bold py-2 md:px-10 md:py-4 md:hover:bg-blue-500 "
-              >
-                Set Control
-              </button>
+              <ThreeDots domainName={i.domainName} setOpen={setOpen}  />
             )}
-          </div>
+          </motion.div>
         ))}
       {!isConnected && (
         <div
@@ -113,7 +114,7 @@ function Profile() {
           <Link
             to="/"
             className=" bg-priBlue py-2 md:py-4 px-4 md:px-6 md:text-xl 
-            font-bold text-white md:hover:bg-blue-500 rounded-md "
+            font-bold text-white md:hover:bg-blue-500 rounded-md"
           >
             Mint ID
           </Link>
