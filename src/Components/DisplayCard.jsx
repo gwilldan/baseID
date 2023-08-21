@@ -9,7 +9,6 @@ import { abi } from "../contract-artifacts/abi";
 
 import {
   useAccount,
-  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
   useWaitForTransaction,
@@ -17,7 +16,7 @@ import {
 import { extractErrorDetails, shortenAddress } from "../utils/helperFunctions";
 import { ethers } from "ethers";
 
-function DisplayCard({ searchedName, setSearchedName, setToggle }) {
+function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
   //GROUP STYLING FOR DISPLAY CARD
   const cardStyle = "border-b border-[#17338F] py-4 md:border-none";
   const dataStyle = "text-lg font-bold";
@@ -62,12 +61,6 @@ function DisplayCard({ searchedName, setSearchedName, setToggle }) {
       },
     },
   };
-
-  const { data: tld } = useContractRead({
-    address: import.meta.env.VITE_CA,
-    abi: abi,
-    functionName: "tld",
-  });
 
   const { config, error, isError } = usePrepareContractWrite({
     address: import.meta.env.VITE_CA,
@@ -232,6 +225,7 @@ DisplayCard.propTypes = {
   searchedName: PropTypes.string,
   setSearchedName: PropTypes.func,
   setToggle: PropTypes.func,
+  tld: PropTypes.string,
 };
 
 export default DisplayCard;
