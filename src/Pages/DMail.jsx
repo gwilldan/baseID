@@ -25,7 +25,7 @@ function DMail() {
           </h1>
           <p className="text-left mt-6 font-normal md:text-xl ">
             &quot;Introducing our Blockchain Mail Service, where secure
-            identities from our Blockchain Name Service converge with encrypted
+            Identities from our Blockchain Name Service converge with encrypted
             communications to ensuring your messages are safe and trusted.&quot;
           </p>
         </div>
