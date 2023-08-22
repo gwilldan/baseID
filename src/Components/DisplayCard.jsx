@@ -183,20 +183,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
         </div>
       ) : (
         <Fragment>
-          <div className={cardStyle}>
-            <div className=" flex items-center gap-2">
-              <button onClick={subtract} className=" text-priBlue text-xl">
-                <AiOutlineMinusCircle />
-              </button>
-              <p className={`${dataStyle}  dark:text-white`}>{year} Year</p>
-              <button onClick={add}>
-                <AiOutlinePlusCircle className=" text-priBlue text-xl" />
-              </button>
-            </div>
-            <p className=" dark:font-semibold dark:text-white">
-              Registration Period
-            </p>
-          </div>
+        
 
           <ReadPrice args={searchedName} setPrice={setPrice} />
 
