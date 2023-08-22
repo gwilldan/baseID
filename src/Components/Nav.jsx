@@ -28,7 +28,7 @@ function Nav({ modalToggle, setModalToggle, setOpen, isOpen }) {
 
   const anim = {
     begin: {
-      y: 0,
+      y: -70,
       display: "hidden",
       opacity: 0,
     },
