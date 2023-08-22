@@ -5,10 +5,13 @@ export const NetworkContext = createContext(null);
 
 const NetworkProvider = ({ children }) => {
   const [network, setNetwork] = useState("base-goerli");
+  const [domainName, setDomainName] = useState("");
 
   return (
     <>
-      <NetworkContext.Provider value={{ network, setNetwork }}>
+      <NetworkContext.Provider
+        value={{ network, setNetwork, domainName, setDomainName }}
+      >
         {children}
       </NetworkContext.Provider>
     </>

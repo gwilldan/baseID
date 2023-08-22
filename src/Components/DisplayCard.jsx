@@ -1,6 +1,5 @@
 import { Fragment, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import ReadPrice from "./Functional/ReadPrice";
@@ -17,34 +16,11 @@ import { extractErrorDetails, shortenAddress } from "../utils/helperFunctions";
 import { ethers } from "ethers";
 
 function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
-  //GROUP STYLING FOR DISPLAY CARD
-  const cardStyle = "border-b border-[#17338F] py-4 md:border-none";
-  const dataStyle = "text-lg font-bold";
-
-  const [year, setYear] = useState(1);
-  const [eth, setEth] = useState(0.002);
   const [isNameAvail, setIsNameAvail] = useState(false);
   const [ownerAddress, setOwnerAddress] = useState("");
   const [price, setPrice] = useState("");
   const { isConnected } = useAccount();
   const toastRef = useRef("");
-
-  const add = () => {
-    const newYear = year + 1;
-    setYear(newYear);
-    const newEth = (0.002 * newYear).toFixed(3);
-    setEth(newEth);
-  };
-  const subtract = () => {
-    if (year === 1) {
-      setYear(year);
-      setEth(eth);
-    } else {
-      setYear(year - 1);
-      const newEth = (eth - 0.002).toFixed(3);
-      setEth(newEth);
-    }
-  };
 
   const animVariant = {
     start: {
@@ -183,8 +159,6 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
         </div>
       ) : (
         <Fragment>
-        
-
           <ReadPrice args={searchedName} setPrice={setPrice} />
 
           <button

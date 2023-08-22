@@ -9,11 +9,9 @@ import WalletConnect from "./WalletConnect";
 
 const Layout = () => {
   const { chains, switchNetwork } = useSwitchNetwork();
-  const { address, isConnected } = useAccount();
+  const { address } = useAccount();
   const { network } = useCurrentNetwork();
   const { chain } = useNetwork();
-
-  console.log(address, isConnected);
 
   // STATE FOR MODAL CHANG
   const [modalToggle, setModalToggle] = useState(false);

@@ -5,23 +5,19 @@ import { BiSolidWallet } from "react-icons/bi";
 import { shortenAddress } from "../utils/helperFunctions";
 import { abi } from "../contract-artifacts/abi";
 import useCurrentNetwork from "../Hooks/useCurrentNetwork";
+import useGetSeletedName from "../Hooks/useGetSeletedName";
 
 function Button({ setModalToggle }) {
   const { address, isConnected } = useAccount();
   const { network } = useCurrentNetwork();
   const { chain } = useNetwork();
 
+  const { domainName } = useGetSeletedName(address);
+
   const { disconnect } = useDisconnect({
     onError(error) {
       console.log(error);
     },
-  });
-
-  const { data: domainName } = useContractRead({
-    address: import.meta.env.VITE_CA,
-    abi,
-    functionName: "getAssociatedName",
-    args: [address],
   });
 
   const handleConnectButton = () => {
