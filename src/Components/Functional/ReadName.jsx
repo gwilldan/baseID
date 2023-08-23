@@ -9,8 +9,10 @@ const ReadName = ({ args, setIsNameAvail, setOwnerAddress, tld }) => {
     abi,
     functionName: "getDomainAddress",
     args: [args],
-    // chainId: import.meta.env.VITE_DEV_CHAIN_ID,
+    chainId: import.meta.env.VITE_DEV_CHAIN_ID,
   });
+
+  console.log(ownerAddress);
 
   const isNotZeroAddress = ownerAddress !== ethers.ZeroAddress;
 

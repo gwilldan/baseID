@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
-import { useAccount, useContractRead, useDisconnect, useNetwork } from "wagmi";
+import { useAccount, useDisconnect, useNetwork } from "wagmi";
 import { BiSolidWallet } from "react-icons/bi";
 
 import { shortenAddress } from "../utils/helperFunctions";
-import { abi } from "../contract-artifacts/abi";
 import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 import useGetSeletedName from "../Hooks/useGetSeletedName";
 
@@ -29,7 +28,7 @@ function Button({ setModalToggle }) {
   };
 
   const butStyles =
-    "  hover:bg-blue-500 active:bg-priBlue bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
+    "bg-priBlue hover:bg-blue-500 active:bg-priBlue text-white text-small px-3 py-3 border-none rounded-lg";
 
   return (
     <div>
@@ -45,7 +44,8 @@ function Button({ setModalToggle }) {
         isConnected && (
           <button
             className={`${butStyles}  px-6 py-3  border-2 border-solid border-[#17338F] rounded-bl-full flex gap-4 items-center ${
-              chain.network !== network && "bg-[#e11e09] hover:bg-[#f00606]"
+              chain.network !== network &&
+              "bg-[#e11e09!important] hover:bg-[#f00606]"
             }`}
             onClick={handleConnectButton}
           >
