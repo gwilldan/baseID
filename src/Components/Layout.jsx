@@ -15,7 +15,6 @@ const Layout = () => {
 
   // STATE FOR MODAL CHANG
   const [modalToggle, setModalToggle] = useState(false);
-  const [theme, setTheme] = useState("light");
 
   // STATE OF HAMBURGER TOGGLE
   const [isOpen, setOpen] = useState(false);
@@ -27,8 +26,6 @@ const Layout = () => {
   return (
     <div className=" w-full flex flex-col  h-screen md-h-auto">
       <Nav
-        theme={theme}
-        setTheme={setTheme}
         modalToggle={modalToggle}
         setModalToggle={setModalToggle}
         isOpen={isOpen}

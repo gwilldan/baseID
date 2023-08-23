@@ -53,9 +53,7 @@ function Profile() {
   } = useWaitForTransaction({
     hash: txHash?.hash,
   });
-  const { domainName } = useGetSeletedName(address, {
-    refetch: isFetched,
-  });
+  const { domainName, refetch } = useGetSeletedName(address);
 
   const displayMiningTx = () => {
     toastRef.current = toast.loading(
@@ -108,6 +106,10 @@ function Profile() {
     }));
     setDomains(updatedDivs);
   };
+
+  useEffect(() => {
+    refetch?.();
+  }, [isSuccess]);
 
   useEffect(() => {
     const getAllDomains = async () => {
