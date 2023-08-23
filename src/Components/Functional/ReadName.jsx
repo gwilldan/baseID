@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContractRead, useNetwork } from "wagmi";
+import { useContractRead } from "wagmi";
 import { abi } from "../../contract-artifacts/abi";
 import { ethers } from "ethers";
 import { useEffect } from "react";

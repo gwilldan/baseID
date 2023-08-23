@@ -1,16 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useAccount,
   useConnect,
-  useContractRead,
   useContractWrite,
   useNetwork,
-  usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { easeInOut, motion, stagger } from "framer-motion";
+import { motion } from "framer-motion";
 import { BsFillInfoSquareFill } from "react-icons/bs";
 
 import { getUserDomainNames } from "../contract-artifacts/utils/helpers";
@@ -18,8 +16,6 @@ import { abi } from "../contract-artifacts/abi";
 
 import { animVariant } from "../utils/anim";
 import { extractErrorDetails, parseError } from "../utils/helperFunctions";
-// import { ThreeDots, SetButton } from "../Components";
-// import { id } from "ethers";
 import { BsThreeDots } from "react-icons/bs";
 import useGetSeletedName from "../Hooks/useGetSeletedName";
 
