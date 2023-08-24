@@ -37,7 +37,7 @@ const MobileNav = ({ handleToggle, toggledElementRef }) => {
 
 MobileNav.propTypes = {
   handleToggle: PropTypes.func,
-  toggledElementRef: PropTypes.node,
+  toggledElementRef: PropTypes.any,
 };
 
 export default MobileNav;
