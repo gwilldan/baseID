@@ -105,7 +105,7 @@ function Profile() {
 
   useEffect(() => {
     refetch?.();
-  }, [isSuccess]);
+  }, [isSuccess, refetch]);
 
   useEffect(() => {
     const getAllDomains = async () => {
@@ -186,9 +186,9 @@ function Profile() {
           <motion.div
             key={i._id}
             className=" relative mb-4 md:p-4 md:mb-8 p-2
-                    bg-secondary-color shadow-md "
+                    bg-secondary-color shadow-md h-auto"
           >
-            <div className=" flex justify-between ">
+            <div className=" flex justify-between h-12 md:min-h-full w-full flex justify-between items-center ">
               <p
                 className={` ${
                   i.domainName === `${domainName}` && "font-bold"
@@ -197,7 +197,7 @@ function Profile() {
                 {i.domainName}
               </p>
               {i.domainName === `${domainName}` ? (
-                <p className="background-text text-bold text-xl">SELECTED</p>
+                <p className="background-text text-bold md:text-xl">SELECTED</p>
               ) : (
                 <BsThreeDots
                   className=" md:text-2xl cursor-pointer"
@@ -214,11 +214,10 @@ function Profile() {
               animate={
                 i.value === true
                   ? {
-                      height: "100px",
                       marginTop: "10px",
+                      height: "auto",
                       visibility: "visible",
                       opacity: "1",
-                      // borderTop: "1px solid blue"
                     }
                   : {
                       visibility: "collapse",
@@ -233,8 +232,8 @@ function Profile() {
               <h1 className=" border-t border-priBlue w-max font-semibold">
                 Set ID as Controller
               </h1>
-              <div className=" flex justify-between items-top">
-                <p className=" max-w-[250px] md:max-w-[700px] font-extralight text-[12px] md:text-base  ">
+              <div className=" flex justify-between items-top flex-col gap-4 sm:flex-row">
+                <p className=" md-max-w-[250px] md:max-w-[700px] font-extralight text-[12px] md:text-base  ">
                   Controller gives permission to set your preferred name to send
                   and receive tokens.
                 </p>
@@ -251,7 +250,7 @@ function Profile() {
 
               <div
                 className={
-                  " absolute bottom-0 mb-1 md:mb-6 text-red-500 flex gap-2 items-center md:font-semibold md:text-lg"
+                  "my-2 text-red-500 flex gap-2 items-center md:font-semibold md:text-lg"
                 }
               >
                 <BsFillInfoSquareFill className=" md:text-lg text-red-500" />

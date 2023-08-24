@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { animVariant, childVariant } from "../utils/anim";
 
 import { InputField, DisplayCard } from "../Components";
-import { useContractRead, usePublicClient } from "wagmi";
+import { useContractRead } from "wagmi";
 import { abi } from "../contract-artifacts/abi";
 
 function HomePage() {

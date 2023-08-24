@@ -1,7 +1,7 @@
 import { useConnect } from "wagmi";
 import PropTypes from "prop-types";
 
-function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
+function WalletConnect({ setModalToggle, setOpen }) {
   const { connect, connectors } = useConnect({
     async onSuccess() {
       setModalToggle(false);
@@ -27,10 +27,9 @@ function WalletConnect({ modalToggle, setModalToggle, setOpen }) {
   return (
     <div
       onClick={() => setModalToggle(false)}
-      className={`${
-        modalToggle ? "block" : "hidden"
-      } z-[60] grid w-screen h-screen absolute 
-    backdrop-blur-sm border-none `}
+      className={
+        " z-[60] grid w-screen h-screen fixed inset-y-0 inset-x-0 backdrop-blur-sm border-none"
+      }
     >
       <div
         onClick={(e) => e.stopPropagation()}

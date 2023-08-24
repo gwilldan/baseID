@@ -5,11 +5,17 @@ import { BiSolidWallet } from "react-icons/bi";
 import { shortenAddress } from "../utils/helperFunctions";
 import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 import useGetSeletedName from "../Hooks/useGetSeletedName";
+import WalletConnect from "./WalletConnect";
+import useToggle from "../Hooks/useToggle";
 
-function Button({ setModalToggle }) {
+function Button() {
   const { address, isConnected } = useAccount();
   const { network } = useCurrentNetwork();
   const { chain } = useNetwork();
+
+  const { handleToggle, toggle } = useToggle({
+    eventType: "click",
+  });
 
   const { domainName } = useGetSeletedName(address);
 
@@ -23,7 +29,7 @@ function Button({ setModalToggle }) {
     if (isConnected) {
       disconnect();
     } else {
-      setModalToggle(true);
+      handleToggle();
     }
   };
 
@@ -35,7 +41,6 @@ function Button({ setModalToggle }) {
       {!isConnected ? (
         <button
           className={`${butStyles} font-normal text-sm`}
-          // onClick={() => connect({ connector: connectors[0] })}
           onClick={handleConnectButton}
         >
           CONNECT WALLET
@@ -59,6 +64,9 @@ function Button({ setModalToggle }) {
             }` || shortenAddress(address)}
           </button>
         )
+      )}
+      {toggle && (
+        <WalletConnect modalToggle={toggle} setModalToggle={handleToggle} />
       )}
     </div>
   );
