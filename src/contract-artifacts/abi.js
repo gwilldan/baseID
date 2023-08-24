@@ -708,16 +708,6 @@ export const abi = [
   },
   {
     inputs: [
-      { internalType: "uint128", name: "tokenId", type: "uint128" },
-      { internalType: "string", name: "name", type: "string" },
-    ],
-    name: "setNameToId",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
       { internalType: "string", name: "name", type: "string" },
       { internalType: "string", name: "record", type: "string" },
     ],

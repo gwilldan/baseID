@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import PropTypes from "prop-types";
 import { Logo, LogoDark } from "../Assets";
 import { Button, MobileNav } from "../Components";
 
@@ -10,21 +9,22 @@ import { Squash } from "hamburger-react";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import useCurrentNetwork from "../Hooks/useCurrentNetwork";
+import useToggle from "../Hooks/useToggle";
 
-function Nav({ modalToggle, setModalToggle, setOpen, isOpen }) {
+function Nav() {
   const { chains, switchNetwork } = useSwitchNetwork();
   const { address } = useAccount();
   const { network } = useCurrentNetwork();
+
+  const { handleToggle, toggle, toggleRef, toggledElementRef } = useToggle({
+    eventType: "click",
+  });
 
   const { theme, themeToggler } = useDarkMode();
 
   useEffect(() => {
     switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
   }, [address, chains, switchNetwork]);
-
-  const toggling = () => {
-    setOpen(!isOpen);
-  };
 
   const anim = {
     begin: {
@@ -100,18 +100,18 @@ function Nav({ modalToggle, setModalToggle, setOpen, isOpen }) {
         </button>
 
         {/* HAMBURGER */}
-        <div className=" dark:text-white md:hidden">
+        <div className=" dark:text-white md:hidden" ref={toggleRef}>
           <Squash
             hideOutline={true}
             size={28}
-            toggled={isOpen}
-            toggle={toggling}
+            toggled={toggle}
+            toggle={handleToggle}
             easing="ease-in"
           />
         </div>
 
         <div className=" hidden md:block">
-          <Button setModalToggle={setModalToggle} setOpen={setOpen} />
+          <Button />
         </div>
       </div>
 
@@ -119,27 +119,17 @@ function Nav({ modalToggle, setModalToggle, setOpen, isOpen }) {
       <motion.div
         variants={anim}
         initial="begin"
-        animate={isOpen ? "end" : "begin"}
+        animate={toggle ? "end" : "begin"}
         className=" -z-50 hidden md:hidden w-full absolute bottom-0 
          ml-[-20px] shadow-xl"
       >
         <MobileNav
-          setOpen={setOpen}
-          modalToggle={modalToggle}
-          setModalToggle={setModalToggle}
+          setModalToggle={handleToggle}
+          toggledElementRef={toggledElementRef}
         />
       </motion.div>
     </div>
   );
 }
-
-Nav.propTypes = {
-  theme: PropTypes.string,
-  setTheme: PropTypes.func,
-  modalToggle: PropTypes.bool,
-  setModalToggle: PropTypes.func,
-  setOpen: PropTypes.func,
-  isOpen: PropTypes.bool,
-};
 
 export default Nav;
