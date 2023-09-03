@@ -563,6 +563,19 @@ export const abi = [
   {
     inputs: [
       {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+    ],
+    name: "adminRegisterDomain",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "to",
         type: "address",
@@ -795,7 +808,7 @@ export const abi = [
         type: "uint256",
       },
     ],
-    stateMutability: "pure",
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -897,6 +910,24 @@ export const abi = [
     inputs: [
       {
         internalType: "address",
+        name: "addr",
+        type: "address",
+      },
+      {
+        internalType: "bool",
+        name: "value",
+        type: "bool",
+      },
+    ],
+    name: "setAdminWhitelist",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
         name: "operator",
         type: "address",
       },
@@ -921,7 +952,7 @@ export const abi = [
     ],
     name: "setAssociatedName",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
   {
@@ -952,7 +983,7 @@ export const abi = [
     ],
     name: "setRecord",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
   {
