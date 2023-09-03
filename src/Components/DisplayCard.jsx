@@ -72,6 +72,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
     isFetchedAfterMount,
     isFetching,
     isFetched,
+    isIdle,
     isError: txIsError,
   } = useWaitForTransaction({
     hash: txHash?.hash,
@@ -127,7 +128,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
     if (isMintingError) {
       toast.error(extractErrorDetails(mintingError));
     }
-  }, []);
+  }, [isMintingError, isIdle]);
 
   console.log(isFetchedAfterMount);
 
