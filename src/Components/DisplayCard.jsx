@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
@@ -69,6 +69,7 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
     data,
     isSuccess,
     isLoading,
+    isFetchedAfterMount,
     isFetching,
     isFetched,
     isError: txIsError,
@@ -110,21 +111,25 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
     });
   };
 
-  if (isFetching && !data) {
-    displayMiningTx();
-  }
+  useEffect(() => {
+    if (isLoading && !isFetchedAfterMount && !data) {
+      displayMiningTx();
+    }
 
-  if (isSuccess && isFetched && !isFetching && data) {
-    updateMining(txIsError);
-    setToggle(false);
-    setSearchedName("");
-  } else if (isError) {
-    updateMining(txIsError);
-  }
+    if (isSuccess && isFetched && !isFetching && data) {
+      updateMining(txIsError);
+      setToggle(false);
+      setSearchedName("");
+    } else if (isError) {
+      updateMining(txIsError);
+    }
 
-  if (isMintingError) {
-    toast.error(extractErrorDetails(mintingError));
-  }
+    if (isMintingError) {
+      toast.error(extractErrorDetails(mintingError));
+    }
+  }, []);
+
+  console.log(isFetchedAfterMount);
 
   const handleError = (error) => {
     const parsedError = extractErrorDetails(error);

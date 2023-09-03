@@ -63,7 +63,7 @@ function Nav() {
               ? "pending"
               : isActive
               ? "text-priBlue text-lg hidden md:block font-semibold dark:text-white hover:text-blue"
-              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-50"
+              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-100"
           }
         >
           Home
@@ -76,7 +76,7 @@ function Nav() {
               ? "pending"
               : isActive
               ? "text-priBlue text-lg hidden md:block font-semibold dark:text-white hover:text-blue"
-              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-50"
+              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-100"
           }
         >
           Profile
@@ -89,7 +89,7 @@ function Nav() {
               ? "pending"
               : isActive
               ? "text-priBlue text-lg hidden md:block font-semibold dark:text-white hover:text-blue"
-              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-50"
+              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-100"
           }
         >
           D-Mail
