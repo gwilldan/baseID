@@ -18,6 +18,7 @@ import { animVariant } from "../utils/anim";
 import { extractErrorDetails, parseError } from "../utils/helperFunctions";
 import { BsThreeDots } from "react-icons/bs";
 import useGetSeletedName from "../Hooks/useGetSeletedName";
+import Loader from "../Components/Loader";
 
 function Profile() {
   const { address, isConnected } = useAccount();
@@ -138,6 +139,10 @@ function Profile() {
         setDomains(domainsWithDefaultValue);
       } catch (err) {
         err?.response?.status === 404 && setDomains([]);
+        if (err?.response.status === 403) {
+          toast.error(err?.response?.data?.message);
+          setDomains(undefined);
+        }
       }
     };
     getAllDomains();
@@ -154,7 +159,7 @@ function Profile() {
       args: [args],
     });
   };
-
+  console.log(domains);
   return (
     <motion.div
       variants={animVariant}
@@ -179,9 +184,7 @@ function Profile() {
       </div>
 
       {/*  RENDERS WHEN THERE'RE IDs LINKED TO WALLET */}
-      {domains !== null &&
-        isConnected &&
-        domains?.length > 0 &&
+      {domains !== null && domains !== "undefined" && isConnected ? (
         domains?.map((i) => (
           <motion.div
             key={i._id}
@@ -258,7 +261,20 @@ function Profile() {
               </div>
             </motion.div>
           </motion.div>
-        ))}
+        ))
+      ) : (
+        <Loader />
+      )}
+
+      {domains === undefined && (
+        <div
+          className=" text-red-500 flex gap-2 items-center
+    font-semibold md:text-lg"
+        >
+          <BsFillInfoSquareFill className=" md:text-lg text-red-500" />
+          Client is not authorized
+        </div>
+      )}
 
       {/*  RENDERS WHEN THERE IS WALLET IS NOT CONNECTED OR
                                             NO ID LINKED TO WALLET */}
