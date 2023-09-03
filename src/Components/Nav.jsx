@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import useCurrentNetwork from "../Hooks/useCurrentNetwork";
 import useToggle from "../Hooks/useToggle";
 
+//hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white
 function Nav() {
   const { chains, switchNetwork } = useSwitchNetwork();
   const { address } = useAccount();
@@ -57,36 +58,39 @@ function Nav() {
       <div className=" flex gap-4 items-center">
         <NavLink
           to="/"
-          className={`${({ isActive, isPending }) =>
+          className={({ isActive, isPending }) =>
             isPending
               ? "pending"
               : isActive
-              ? "active"
-              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
+              ? "text-priBlue text-lg hidden md:block font-semibold dark:text-white hover:text-blue"
+              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-50"
+          }
         >
           Home
         </NavLink>
 
         <NavLink
           to="/profile"
-          className={`${({ isActive, isPending }) =>
+          className={({ isActive, isPending }) =>
             isPending
               ? "pending"
               : isActive
-              ? "active"
-              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
+              ? "text-priBlue text-lg hidden md:block font-semibold dark:text-white hover:text-blue"
+              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-50"
+          }
         >
           Profile
         </NavLink>
 
         <NavLink
           to="/d-mail"
-          className={`${({ isActive, isPending }) =>
+          className={({ isActive, isPending }) =>
             isPending
               ? "pending"
               : isActive
-              ? "active"
-              : ""} hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white `}
+              ? "text-priBlue text-lg hidden md:block font-semibold dark:text-white hover:text-blue"
+              : "hover:text-priBlue text-lg hidden md:block font-semibold dark:text-white opacity-50"
+          }
         >
           D-Mail
         </NavLink>
