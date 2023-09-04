@@ -24,7 +24,6 @@ function HomePage() {
     abi: abi,
     functionName: "tld",
   });
-  console.log("tld", tld);
 
   const handleNameChange = (e) => {
     const newValue = e.target.value.replace(/\s/g, "");

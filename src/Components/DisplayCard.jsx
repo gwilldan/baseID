@@ -129,8 +129,6 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
     }
   }, [isMintingError, isLoading, isSuccess]);
 
-  console.log(isFetchedAfterMount);
-
   const handleError = (error) => {
     const parsedError = extractErrorDetails(error);
     if (parsedError?.includes("insufficient funds")) return "Insufficient ETH";
