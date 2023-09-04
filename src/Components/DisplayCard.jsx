@@ -97,7 +97,9 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
           <br />
           <a
             style={{ textDecoration: "underline" }}
-            href={`${import.meta.env.VITE_DEV_SCAN}/${data?.transactionHash}`}
+            href={`${import.meta.env.VITE_PRODUCTION_SCAN}/${
+              data?.transactionHash
+            }`}
             target="_blank"
             rel="noreferrer"
           >
@@ -128,8 +130,6 @@ function DisplayCard({ searchedName, setSearchedName, setToggle, tld }) {
       toast.error(extractErrorDetails(mintingError));
     }
   }, [isMintingError, isLoading, isSuccess]);
-
-  console.log(isFetchedAfterMount);
 
   const handleError = (error) => {
     const parsedError = extractErrorDetails(error);

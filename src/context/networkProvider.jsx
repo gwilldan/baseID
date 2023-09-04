@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export const NetworkContext = createContext(null);
 
 const NetworkProvider = ({ children }) => {
-  const [network, setNetwork] = useState("base-goerli");
+  const [network, setNetwork] = useState("base");
   const [domainName, setDomainName] = useState("");
 
   return (

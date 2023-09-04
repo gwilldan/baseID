@@ -19,6 +19,7 @@ import { extractErrorDetails, parseError } from "../utils/helperFunctions";
 import { BsThreeDots } from "react-icons/bs";
 import useGetSeletedName from "../Hooks/useGetSeletedName";
 import Loader from "../Components/Loader";
+import { ethers } from "ethers";
 
 function Profile() {
   const { address, isConnected } = useAccount();
@@ -38,6 +39,7 @@ function Profile() {
     address: import.meta.env.VITE_CA,
     abi,
     functionName: "setAssociatedName",
+    value: ethers.parseEther("0.0004"),
   });
 
   const {
@@ -159,7 +161,7 @@ function Profile() {
       args: [args],
     });
   };
-  console.log(domains);
+
   return (
     <motion.div
       variants={animVariant}

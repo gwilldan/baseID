@@ -568,7 +568,7 @@ export const abi = [
         type: "string",
       },
     ],
-    name: "adminRegisterDomain",
+    name: "adminDomain",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
