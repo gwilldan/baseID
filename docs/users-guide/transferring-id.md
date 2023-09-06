@@ -17,4 +17,4 @@ here is a quick guide assist, if you are not familiar with the steps.\
 
 Inasmuch as we do not place much priority on Secondary sales of IDs, we can not, however impede any user who wishes to trade IDs. One of the key features of ID is "User Control" and we can not dictate what a user does. Be sure to trade your IDs on our official Marketplace on Opensea;
 
-{% embed url="https://opensea.io/collection/baseid-1" %}
+[https://opensea.io/collection/baseid-1](https://opensea.io/collection/baseid-1)
