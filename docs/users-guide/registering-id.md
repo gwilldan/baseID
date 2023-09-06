@@ -1,3 +1,7 @@
+---
+description: How can i mint a domain name?
+---
+
 # ✍ Registering ID
 
 Step by step guide to registering a name as Identity (ID) on BaseID having successfully connected a wallet to our DApp;
@@ -15,4 +19,3 @@ On passing availability check, registering your preferred name as an Identity wo
 * Update the BaseID database to sort and provide lists for each IDs mapped to a wallet address.
 
 On confirmation, the transaction would be carried out and once completed, you would be required to **SET ID** on profile section of our App. Details on the next page.
-

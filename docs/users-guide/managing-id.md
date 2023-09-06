@@ -1,3 +1,7 @@
+---
+description: Best way to handle and manage my NFTs
+---
+
 # 📎 Managing ID
 
 Managing an ID involves overseeing the resolution of Identities within the service space. Registered IDs would have access to all the functionalities of BaseID, to grant this access, the ID should be set to Controller ID. There can only one Controller ID per address.
@@ -14,5 +18,4 @@ NOTE: _`The DApp APIs, transfer and other utility functionalities have already b
 
 ### Setting Controller ID
 
-Having registered an ID, go to the profile page or click app.baseid.domains/profile, and connect  your wallet. A list of all IDs owned by the connected address would be displayed, each having menu Icons. Click on your preferred registered ID and click on the **Set ID** button, Approve the transaction and the Selected ID would be set as the Controller.
-
+Having registered an ID, go to the profile page or click app.baseid.domains/profile, and connect your wallet. A list of all IDs owned by the connected address would be displayed, each having menu Icons. Click on your preferred registered ID and click on the **Set ID** button, Approve the transaction and the Selected ID would be set as the Controller.
