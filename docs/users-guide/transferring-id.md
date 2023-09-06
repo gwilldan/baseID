@@ -8,10 +8,18 @@ In addition, every ID has a storage capacity which can take in an Infinite lengt
 
 Transferring an ID can be done just like transferring every other ERC721 standard token.
 
-here is a quick guide assist, if you are not familiar with the steps.\\
+here is a quick guide assist, if you are not familiar with the steps.
 
 {% embed url="https://support.opensea.io/hc/en-us/articles/5183126109715-How-can-I-transfer-an-NFT-using-OpenSea-" %}
 
 ### Secondary Trade of ID
 
 Inasmuch as we do not place much priority on Secondary sales of IDs, we can not, however impede any user who wishes to trade IDs. One of the key features of ID is "User Control" and we can not dictate what a user does. Be sure to trade your IDs on our official Marketplace on Opensea.
+
+<details>
+
+<summary><a href="https://opensea.io/collection/baseid-1">https://opensea.io/collection/baseid-1</a></summary>
+
+Opensea Collection
+
+</details>
