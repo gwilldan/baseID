@@ -7,24 +7,28 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 
 const Layout = () => {
-  const { chains, switchNetwork } = useSwitchNetwork();
-  const { address } = useAccount();
-  const { network } = useCurrentNetwork();
-  const { chain } = useNetwork();
+	const { chains, switchNetwork } = useSwitchNetwork();
+	const { address } = useAccount();
+	const { network } = useCurrentNetwork();
+	const { chain } = useNetwork();
 
-  useEffect(() => {
-    switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
-  }, [address, chains, chain, network, switchNetwork]);
+	useEffect(() => {
+		switchNetwork?.(chains.find((chain) => chain.network === network)?.id);
+	}, [address, chains, chain, network, switchNetwork]);
 
-  return (
-    <div className=" w-full flex flex-col  h-screen md-h-auto">
-      <Nav />
-      <main className="no-scrollbar overflow-auto w-full h-full flex flex-col md:h-full">
-        {<Outlet />}
-      </main>
-      <Footer />
-    </div>
-  );
+	return (
+		<div
+			style={{
+				height: "100dvh",
+			}}
+			className=" w-full flex flex-col md-h-auto">
+			<Nav />
+			<main className="no-scrollbar overflow-auto w-full h-full flex flex-col md:h-full">
+				{<Outlet />}
+			</main>
+			<Footer />
+		</div>
+	);
 };
 
 export default Layout;
